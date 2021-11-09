@@ -20,7 +20,7 @@ public class ItemList
 	public static final RegistryObject<Item> SWORD_GEMSTONE = ITEMS.register("sword_gemstone", () -> new Item(new Item.Properties().group(SwordTab)));
 	
 	//passive + neutral mobs 
-	public static final RegistryObject<SwordItem> OCELOT_SWORD = ITEMS.register("ocelot_sword", () -> new SwordItem(ModItemTier.SWORD_GEM, 1, 0, new Item.Properties().group(SwordTab)));
+	public static final RegistryObject<SwordItem> OCELOT_SWORD = ITEMS.register("ocelot_sword", () -> new SwordItem(ModItemTier.SWORD_GEM, 0, 0, new Item.Properties().group(SwordTab)));
 	public static final RegistryObject<SwordItem> CHICKEN_SWORD = ITEMS.register("chicken_sword", () -> new SwordItem(ModItemTier.SWORD_GEM, 0, 0, new Item.Properties().group(SwordTab)));
 	public static final RegistryObject<SwordItem> PIG_SWORD = ITEMS.register("pig_sword", () -> new SwordItem(ModItemTier.SWORD_GEM, 0, 0, new Item.Properties().group(SwordTab)));
 	public static final RegistryObject<SwordItem> SQUID_SWORD = ITEMS.register("squid_sword", () -> new SwordItem(ModItemTier.SWORD_GEM, 0, 0, new Item.Properties().group(SwordTab)));
