@@ -18,7 +18,7 @@ public class ItemList
 	public static final RegistryObject<Item> PIG_SWORD = ITEMS.register("pig_sword", () -> new Item(new Item.Properties().group(Main.SWORD_TAB)));
 	public static final RegistryObject<Item> SQUID_SWORD = ITEMS.register("squid_sword", () -> new Item(new Item.Properties().group(Main.SWORD_TAB)));
 	public static final RegistryObject<Item> PUFFERFISH_SWORD = ITEMS.register("pufferfish_sword", () -> new Item(new Item.Properties().group(Main.SWORD_TAB)));
-	
+	public static final RegistryObject<Item> RABBIT_SWORD = ITEMS.register("rabbit_sword", () -> new Item(new Item.Properties().group(Main.SWORD_TAB)));
 	
 	//aggressive mobs
 	public static final RegistryObject<Item> GHAST_SWORD = ITEMS.register("ghast_sword", () -> new Item(new Item.Properties().group(Main.SWORD_TAB)));
