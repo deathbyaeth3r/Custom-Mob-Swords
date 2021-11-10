@@ -9,7 +9,9 @@ import com.deathbyaether.custommobswords.util.enums.ModItemTier;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.util.InputMappings;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.monster.CreeperEntity;
+import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -50,7 +52,7 @@ public class CreeperSwordItem extends Item {
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
 		if(!playerIn.getCooldownTracker().hasCooldown(this)) {
 			
-			CreeperEntity entity = new CreeperEntity(worldIn);
+			CreeperEntity entity = new CreeperEntity(EntityType.CREEPER, worldIn);
 			entity.setPosition(playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ());
 			worldIn.addEntity(entity);
 			playerIn.getCooldownTracker().setCooldown(this, 1000);
