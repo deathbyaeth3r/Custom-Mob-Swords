@@ -9,6 +9,7 @@ import com.deathbyaether.custommobswords.util.enums.ModItemTier;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.util.InputMappings;
+import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -26,6 +27,7 @@ public class CreeperSwordItem extends Item {
 	public CreeperSwordItem(ModItemTier swordGem, int i, int j, Properties properties) {
 		super(properties);
 		
+		
 	}
 	
 	
@@ -33,7 +35,7 @@ public class CreeperSwordItem extends Item {
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		// TODO Auto-generated method stub
+		
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 		if (InputMappings.isKeyDown(Minecraft.getInstance().getMainWindow().getHandle(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
 			tooltip.add(new StringTextComponent("right click for projectile"));
@@ -46,8 +48,17 @@ public class CreeperSwordItem extends Item {
 	}
 	
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-		return null;
+		if(!playerIn.getCooldownTracker().hasCooldown(this)) {
+			
+			CreeperEntity entity = new CreeperEntity(worldIn);
+			entity.setPosition(playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ());
+			worldIn.addEntity(entity);
+			playerIn.getCooldownTracker().setCooldown(this, 1000);
+			return ActionResult.resultSuccess(playerIn.getHeldItem(handIn));
+			
+		}
 		
+		return ActionResult.resultFail(playerIn.getHeldItem(handIn));
 		
 	}
 }
