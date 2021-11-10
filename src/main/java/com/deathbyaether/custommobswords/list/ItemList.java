@@ -3,6 +3,7 @@ package com.deathbyaether.custommobswords.list;
 import com.deathbyaether.custommobswords.Main;
 import com.deathbyaether.custommobswords.util.enums.ModItemTier;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.SwordItem;
@@ -17,7 +18,7 @@ public class ItemList
 
 	
 	
-	public static final RegistryObject<Item> SWORD_GEMSTONE = ITEMS.register("sword_gemstone", () -> new Item(new Item.Properties().group(SwordTab)));
+	public static final RegistryObject<Item> SWORD_GEMSTONE = ITEMS.register("sword_gemstone", () -> new Item(new Item.Properties().group(ItemGroup.MISC)));
 	
 	//passive + neutral mobs 
 	public static final RegistryObject<SwordItem> OCELOT_SWORD = ITEMS.register("ocelot_sword", () -> new SwordItem(ModItemTier.SWORD_GEM, 0, 0, new Item.Properties().group(SwordTab)));
