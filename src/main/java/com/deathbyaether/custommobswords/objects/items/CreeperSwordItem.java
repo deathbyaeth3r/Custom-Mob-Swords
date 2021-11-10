@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.lwjgl.glfw.GLFW;
 
+import com.deathbyaether.custommobswords.objects.entities.CreeperProjectileEntity;
 import com.deathbyaether.custommobswords.util.enums.ModItemTier;
 
 import net.minecraft.client.Minecraft;
@@ -11,7 +12,6 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.util.InputMappings;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.monster.CreeperEntity;
-import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -47,21 +47,55 @@ public class CreeperSwordItem extends Item {
 			tooltip.add(new TranslationTextComponent("tooltip.mobswords.creepersword_item.hold_shift"));
 			
 		}
+	} 
+	
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+		
+		ItemStack stack = playerIn.getHeldItem(handIn);
+		
+		if(!worldIn.isRemote) {
+			
+			CreeperProjectileEntity creeper_projectile = new CreeperProjectileEntity(playerIn, worldIn);
+			
+			creeper_projectile.setItem(stack);
+			
+			creeper_projectile.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
+			
+			worldIn.addEntity(creeper_projectile);
+		}
+		
+		
+		if(!playerIn.abilities.isCreativeMode) {
+			stack.shrink(1);
+		}
+		
+		
+		return ActionResult.resultSuccess(stack);
 	}
 	
-	public ActionResult<ItemStack> onLeftClickEntity(World worldIn, PlayerEntity playerIn, Hand handIn) {
+}
+
+	
+	
+	/*
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
 		if(!playerIn.getCooldownTracker().hasCooldown(this)) {
 			
+		
 			CreeperEntity entity = new CreeperEntity(EntityType.CREEPER, worldIn);
 			entity.setPosition(playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ());
 			worldIn.addEntity(entity);
-			playerIn.getCooldownTracker().setCooldown(this, 10);
+			playerIn.getCooldownTracker().setCooldown(this, 1000);
 			return ActionResult.resultSuccess(playerIn.getHeldItem(handIn));
-			
+		
+		
 		}
+		
 		
 		return ActionResult.resultFail(playerIn.getHeldItem(handIn));
 		
 		
 	}
-}
+*/
+

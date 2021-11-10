@@ -1,15 +1,19 @@
 package com.deathbyaether.custommobswords;
 
+import java.util.function.Supplier;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.deathbyaether.custommobswords.list.BlockList;
+import com.deathbyaether.custommobswords.list.EntityList;
 import com.deathbyaether.custommobswords.list.ItemList;
 import com.deathbyaether.custommobswords.list.ParticleList;
 import com.deathbyaether.custommobswords.world.gen.GemstoneGeneration;
-import com.google.common.base.Supplier;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemRenderer;
+import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -19,6 +23,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
@@ -53,6 +58,7 @@ public class Main
 		ItemList.ITEMS.register(modEventBus);
 		BlockList.BLOCKS.register(modEventBus);
 		BlockList.NO_ITEM_BLOCK.register(modEventBus);
+		EntityList.ENTITIES.register(modEventBus);
 	}
 	
 	
@@ -83,16 +89,19 @@ public class Main
 	private void clientSetup(final FMLClientSetupEvent event)
 	{	
 		
+		registerEntityModels(event.getMinecraftSupplier());	
 		
 	}
-	
 	
 	private void registerEntityModels(Supplier<Minecraft> minecraft) {
-		//Just a variable I have set in case I want to add more entities, which will make the code more efficient
-		net.minecraft.client.renderer.ItemRenderer renderer = minecraft.get().getItemRenderer();
 		
+		ItemRenderer renderer = minecraft.get().getItemRenderer();
+		
+		
+		RenderingRegistry.registerEntityRenderingHandler(EntityList.CREEPER_PROJETILE.get(), (renderManager) -> new SpriteRenderer<>(renderManager, renderer));
 		
 	}
+	
 	
 	public static class ModItemGroup extends ItemGroup {
 
