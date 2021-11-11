@@ -11,6 +11,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.util.InputMappings;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.IChargeableMob;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -59,12 +60,12 @@ public class CreeperSwordItem extends Item {
 			CreeperProjectileEntity creeper_projectile = new CreeperProjectileEntity(playerIn, worldIn);
 			
 			creeper_projectile.setItem(stack);
-			
-			creeper_projectile.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-			
+			creeper_projectile.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 2F, 1.0F);
 			worldIn.addEntity(creeper_projectile);
+			
+			playerIn.getCooldownTracker().setCooldown(this, 100);
 		}
-		
+	
 		
 		if(!playerIn.abilities.isCreativeMode) {
 			stack.shrink(1);
