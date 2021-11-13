@@ -20,6 +20,7 @@ import net.minecraft.item.SwordItem;
 import net.minecraft.item.Item.Properties;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.realms.RepeatedNarrator;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
@@ -53,8 +54,6 @@ public class WitherSwordItem extends SwordItem {
 		
 	}
 	
-	
-	
 	@Override
 	public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
 		((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.WITHER, 100, 2));
@@ -64,42 +63,37 @@ public class WitherSwordItem extends SwordItem {
 		return super.onLeftClickEntity(stack, player, entity);
 	}
 	
-	
-	
 	public ActionResult<ItemStack> onItemRightClick (World worldIn, PlayerEntity playerIn, Hand handIn) {
 		
 		ItemStack stack = playerIn.getHeldItem(handIn);
 		Vec3d vec3d = playerIn.getLookVec();
-		double d0 = vec3d.y;
-		double d1 = vec3d.x;
+		double d0 = vec3d.x;
+		double d1 = vec3d.y;
 		double d2 = vec3d.z;
-		double p0 = playerIn.getPosY();
+		double pX = playerIn.getPosX(); 
+		double pY = playerIn.getPosY(); 
+		double pZ = playerIn.getPosZ();
 		
 		
-		
+		System.out.print(vec3d);
 		
 		
 		if(!worldIn.isRemote) {
 			
-			WitherSkullEntity witherskullentity = new WitherSkullEntity(worldIn, playerIn, d1, d0, d2);
-		      
+			WitherSkullEntity witherskullentity = new WitherSkullEntity(worldIn, pX, pY, pZ, d0, d1, d2);
+			
+			
 			worldIn.addEntity(witherskullentity);
 			playerIn.getCooldownTracker().setCooldown(this, 100);
-			
-			
-			
+				
 		}
 	
-		
 		if(!playerIn.abilities.isCreativeMode) {
 			
 		}
 		
-		
 		return ActionResult.resultSuccess(stack);
 	}
 	
-	
-
-	
+		
 }
