@@ -134,6 +134,7 @@ public class CreeperProjectileEntity extends ProjectileItemEntity {
 			if(entity instanceof CreeperEntity) {
 				
 				damage = 0;
+				
 			} else {
 				
 				damage = 2;

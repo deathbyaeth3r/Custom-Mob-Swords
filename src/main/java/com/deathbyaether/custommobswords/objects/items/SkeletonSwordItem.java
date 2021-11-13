@@ -11,6 +11,8 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.util.InputMappings;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
+import net.minecraft.item.Item.Properties;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -18,10 +20,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class SkeletonSwordItem extends Item {
+public class SkeletonSwordItem extends SwordItem {
 
 	public SkeletonSwordItem(ModItemTier swordGem, int i, int j, Properties properties) {
-		super(properties);
+		super(swordGem, j, i, properties);
 		
 	}
 	

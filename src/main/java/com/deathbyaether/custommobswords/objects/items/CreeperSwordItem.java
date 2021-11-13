@@ -16,6 +16,7 @@ import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
@@ -25,10 +26,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class CreeperSwordItem extends Item {
+public class CreeperSwordItem extends SwordItem {
 
 	public CreeperSwordItem(ModItemTier swordGem, int i, int j, Properties properties) {
-		super(properties);
+		super(swordGem, j, i, properties);
 		
 		
 	}
@@ -64,11 +65,13 @@ public class CreeperSwordItem extends Item {
 			worldIn.addEntity(creeper_projectile);
 			
 			playerIn.getCooldownTracker().setCooldown(this, 100);
+			
+			
 		}
 	
 		
 		if(!playerIn.abilities.isCreativeMode) {
-			stack.shrink(1);
+			
 		}
 		
 		
