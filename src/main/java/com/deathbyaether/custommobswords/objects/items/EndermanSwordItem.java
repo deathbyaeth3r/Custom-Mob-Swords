@@ -35,10 +35,9 @@ public class EndermanSwordItem extends SwordItem {
 			tooltip.add(new StringTextComponent("right click for projectile"));
 		} else {
 			
-			// "Hold " + "\u00A7e" + "Shift" + "\u00A77" + " for More Information"
-			tooltip.add(new TranslationTextComponent("tooltip.mobswords.endermansword_item.hold_shift"));
-			
+			tooltip.add(new StringTextComponent("Hold" + "\u00A7e" + " Shift " + "\u00A77" + "for projectile!"));
 		}
+		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 
 }

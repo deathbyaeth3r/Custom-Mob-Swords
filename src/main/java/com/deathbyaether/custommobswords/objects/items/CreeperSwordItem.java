@@ -42,14 +42,13 @@ public class CreeperSwordItem extends SwordItem {
 		
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 		if (InputMappings.isKeyDown(Minecraft.getInstance().getMainWindow().getHandle(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
-			tooltip.add(new StringTextComponent("right click for projectile"));
+			tooltip.add(new StringTextComponent("Shoots charged creeper at live entity"));
 		} else {
 			
-			// "Hold " + "\u00A7e" + "Shift" + "\u00A77" + " for More Information"
-			tooltip.add(new TranslationTextComponent("tooltip.mobswords.creepersword_item.hold_shift"));
-			
+			tooltip.add(new StringTextComponent("Hold" + "\u00A7e" + " Shift " + "\u00A77" + "for projectile!"));
 		}
-	} 
+		super.addInformation(stack, worldIn, tooltip, flagIn);
+	}
 	
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
