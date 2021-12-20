@@ -56,25 +56,17 @@ public class GhastSwordItem extends SwordItem {
 			
 			ItemStack stack = playerIn.getHeldItem(handIn);
 			Vec3d vec3d = playerIn.getLookVec();
-			double dX = vec3d.x;
-			double dY = vec3d.y;
-			double dZ = vec3d.z;
-			double pX = playerIn.getPosX(); 
-			double pY = playerIn.getPosY(); 
-			double pZ = playerIn.getPosZ();
+			double pX = vec3d.x;
+			double pY = vec3d.y;
+			double pZ = vec3d.z;
 			
-			if(dY >= 0) {
-				
-				dY = -dY/2;
-			}
 			
-			System.out.print(vec3d);
 			
 			
 			if(!worldIn.isRemote) {
 				
 		
-				FireballEntity fireballentity = new FireballEntity(worldIn, pX, pY, pZ, dX, dY, dZ);
+				FireballEntity fireballentity = new FireballEntity(worldIn, playerIn, pX, pY, pZ);
 				
 				worldIn.addEntity(fireballentity);
 				

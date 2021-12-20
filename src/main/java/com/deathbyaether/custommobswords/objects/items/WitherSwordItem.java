@@ -71,8 +71,7 @@ public class WitherSwordItem extends SwordItem {
 		double pY = vec3d.y;
 		double pZ = vec3d.z;
 		
-		
-		System.out.print(vec3d);
+	
 		
 		
 		if(!worldIn.isRemote) {
