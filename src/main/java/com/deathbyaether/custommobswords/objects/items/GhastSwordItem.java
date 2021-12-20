@@ -41,7 +41,7 @@ public class GhastSwordItem extends SwordItem {
 		// TODO Auto-generated method stub
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 		if (InputMappings.isKeyDown(Minecraft.getInstance().getMainWindow().getHandle(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
-			tooltip.add(new StringTextComponent("right click for projectile"));
+			tooltip.add(new StringTextComponent("Fires a fireball on right click"));
 		} else {
 			
 			tooltip.add(new StringTextComponent("Hold" + "\u00A7e" + " Shift " + "\u00A77" + "for projectile!"));

@@ -42,7 +42,7 @@ public class CreeperSwordItem extends SwordItem {
 		
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 		if (InputMappings.isKeyDown(Minecraft.getInstance().getMainWindow().getHandle(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
-			tooltip.add(new StringTextComponent("Shoots charged creeper at live entity"));
+			tooltip.add(new StringTextComponent("Fires a charged creeper at live entityon right click"));
 		} else {
 			
 			tooltip.add(new StringTextComponent("Hold" + "\u00A7e" + " Shift " + "\u00A77" + "for projectile!"));
