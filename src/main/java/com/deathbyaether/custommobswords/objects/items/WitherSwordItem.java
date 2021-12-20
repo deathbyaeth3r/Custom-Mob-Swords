@@ -71,7 +71,7 @@ public class WitherSwordItem extends SwordItem {
 		double dY = vec3d.y;
 		double dZ = vec3d.z;
 		double pX = playerIn.getPosX(); 
-		double pY = playerIn.getPosY(); 
+		double pY = playerIn.getPosYEye(); 
 		double pZ = playerIn.getPosZ();
 	
 		

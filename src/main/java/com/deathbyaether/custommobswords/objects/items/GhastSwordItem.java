@@ -9,17 +9,14 @@ import com.deathbyaether.custommobswords.util.enums.ModItemTier;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.util.InputMappings;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FireballEntity;
-import net.minecraft.entity.projectile.SmallFireballEntity;
-import net.minecraft.entity.projectile.WitherSkullEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
-import net.minecraft.item.Item.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -29,6 +26,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class GhastSwordItem extends SwordItem {
+
+	
 
 	public GhastSwordItem(ModItemTier swordGem, int i, int j, Properties properties) {
 		super(swordGem, j, i, properties);
@@ -51,18 +50,20 @@ public class GhastSwordItem extends SwordItem {
 		}
 	
 	}
-		
+	
+	
 		public ActionResult<ItemStack> onItemRightClick (World worldIn, PlayerEntity playerIn, Hand handIn) {
 			
 			ItemStack stack = playerIn.getHeldItem(handIn);
+			
 			Vec3d vec3d = playerIn.getLookVec();
+			
 			double dX = vec3d.x;
 			double dY = vec3d.y;
 			double dZ = vec3d.z;
 			double pX = playerIn.getPosX(); 
-			double pY = playerIn.getPosY(); 
+			double pY = playerIn.getPosYEye(); 
 			double pZ = playerIn.getPosZ();
-			
 			
 			
 			
@@ -83,6 +84,7 @@ public class GhastSwordItem extends SwordItem {
 			
 			return ActionResult.resultSuccess(stack);
 		}
+
 		
 
 }
