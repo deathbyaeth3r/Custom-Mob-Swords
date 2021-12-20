@@ -67,12 +67,9 @@ public class WitherSwordItem extends SwordItem {
 		
 		ItemStack stack = playerIn.getHeldItem(handIn);
 		Vec3d vec3d = playerIn.getLookVec();
-		double d0 = vec3d.x;
-		double d1 = vec3d.y;
-		double d2 = vec3d.z;
-		double pX = playerIn.getPosX(); 
-		double pY = playerIn.getPosY(); 
-		double pZ = playerIn.getPosZ();
+		double pX = vec3d.x;
+		double pY = vec3d.y;
+		double pZ = vec3d.z;
 		
 		
 		System.out.print(vec3d);
@@ -80,7 +77,7 @@ public class WitherSwordItem extends SwordItem {
 		
 		if(!worldIn.isRemote) {
 			
-			WitherSkullEntity witherskullentity = new WitherSkullEntity(worldIn, pX, pY, pZ, d0, d1, d2);
+			WitherSkullEntity witherskullentity = new WitherSkullEntity(worldIn, playerIn, pX, pY, pZ);
 			
 			
 			worldIn.addEntity(witherskullentity);
