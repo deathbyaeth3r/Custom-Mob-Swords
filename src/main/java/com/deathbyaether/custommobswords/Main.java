@@ -99,7 +99,7 @@ public class Main
 		
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityList.CREEPER_PROJETILE.get(), (renderManager) -> new SpriteRenderer<>(renderManager, renderer));
-		
+		RenderingRegistry.registerEntityRenderingHandler(EntityList.DRAGONFORCE_PROJETILE.get(), (renderManager) -> new SpriteRenderer<>(renderManager, renderer));
 	}
 	
 	
