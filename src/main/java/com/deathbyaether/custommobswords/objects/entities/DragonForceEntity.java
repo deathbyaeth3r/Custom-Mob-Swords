@@ -1,11 +1,13 @@
 package com.deathbyaether.custommobswords.objects.entities;
 
+import java.util.List;
+
 import javax.annotation.Nullable;
 
 import com.deathbyaether.custommobswords.list.EntityList;
 import com.deathbyaether.custommobswords.list.ItemList;
-import com.deathbyaether.custommobswords.list.ParticleList;
 
+import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -64,11 +66,46 @@ public class DragonForceEntity extends ProjectileItemEntity {
 
 	@Override
 	protected void onImpact(RayTraceResult result) {
+		
+		if(result.getType() == RayTraceResult.Type.ENTITY) {
+			
+			Entity entity = ((EntityRayTraceResult)result).getEntity();
+			
+		
+		}
+
+		if(result.getType() == RayTraceResult.Type.MISS) {
+			
+			if (!this.world.isRemote) {
+	            List<LivingEntity> list = this.world.getEntitiesWithinAABB(LivingEntity.class, this.getBoundingBox().grow(4.0D, 2.0D, 4.0D));
+	            AreaEffectCloudEntity areaeffectcloudentity = new AreaEffectCloudEntity(this.world, this.getPosX(), this.getPosY(), this.getPosZ());
+	            areaeffectcloudentity.setParticleData(ParticleTypes.DRAGON_BREATH);
+	            areaeffectcloudentity.setRadius(3.0F);
+	            areaeffectcloudentity.setDuration(600);
+	            areaeffectcloudentity.setRadiusPerTick((7.0F - areaeffectcloudentity.getRadius()) / (float)areaeffectcloudentity.getDuration());
+	            areaeffectcloudentity.addEffect(new EffectInstance(Effects.INSTANT_DAMAGE, 1, 1));
+	            if (!list.isEmpty()) {
+	               for(LivingEntity livingentity : list) {
+	                  double d0 = this.getDistanceSq(livingentity);
+	                  if (d0 < 16.0D) {
+	                     areaeffectcloudentity.setPosition(livingentity.getPosX(), livingentity.getPosY(), livingentity.getPosZ());
+	                     break;
+	                  }
+	               }
+	            }
+			}
+				if(!world.isRemote) {
+					this.remove();
+				}
+				
+				
+			}
 		if(!world.isRemote) {
 			this.remove();
 		}
 	}
 	
+
 	public void tick() {
 		
 		RayTraceResult raytraceresult = ProjectileHelper.rayTrace(this, true, false, this.owner, RayTraceContext.BlockMode.COLLIDER);
