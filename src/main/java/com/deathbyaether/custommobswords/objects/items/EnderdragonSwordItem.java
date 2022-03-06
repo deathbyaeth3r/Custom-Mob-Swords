@@ -38,6 +38,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 public class EnderdragonSwordItem extends SwordItem {
+	
 	 
 
 	public EnderdragonSwordItem(ModItemTier swordGem, int i, int j, Properties properties) {
@@ -51,10 +52,10 @@ public class EnderdragonSwordItem extends SwordItem {
 		// TODO Auto-generated method stub
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 		if (InputMappings.isKeyDown(Minecraft.getInstance().getMainWindow().getHandle(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
-			tooltip.add(new StringTextComponent("right click for projectile"));
+			tooltip.add(new StringTextComponent("Right click for projectile"));
 		} else {
 			
-			tooltip.add(new StringTextComponent("Hold" + "\u00A7e" + " Shift " + "\u00A77" + "for projectile!"));
+			tooltip.add(new StringTextComponent("Hold" + "\u00A7e" + " Shift " + "\u00A77" + "for Info!"));
 		}
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 		 
@@ -93,7 +94,7 @@ public class EnderdragonSwordItem extends SwordItem {
 			
 	
 			DragonForceEntity dragonforceentity = new DragonForceEntity(worldIn, pX, pY, pZ, dX, dY, dZ);
-			
+			dragonforceentity.setVelocity(dX, dY, dZ);
 			worldIn.addEntity(dragonforceentity);
 
 			playerIn.getCooldownTracker().setCooldown(this, 100);
