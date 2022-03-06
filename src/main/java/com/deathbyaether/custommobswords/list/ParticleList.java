@@ -13,6 +13,6 @@ public class ParticleList {
 	
 	public static final DeferredRegister<ParticleType<?>> PARTICLES = new DeferredRegister<>(ForgeRegistries.PARTICLE_TYPES, Main.MOD_ID);
 	
-	
+	public static final RegistryObject<BasicParticleType> DRAGONFIRE_PARTICLE = PARTICLES.register("dragonfire_particle", () -> new BasicParticleType(true));
 	
 }

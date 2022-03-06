@@ -1,11 +1,8 @@
 package com.deathbyaether.custommobswords.objects.entities;
 
-import javax.annotation.Nullable;
-
 import com.deathbyaether.custommobswords.list.EntityList;
 import com.deathbyaether.custommobswords.list.ItemList;
 
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -17,50 +14,38 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.Direction;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class DragonForceEntity extends ProjectileItemEntity {
-	public int explosionPower = 5;
-	private Entity target;
-	@Nullable
-	private Direction direction;
-	private int steps;
+public class SquidInkEntity extends ProjectileItemEntity {
 
-	public DragonForceEntity(EntityType<DragonForceEntity> type, World world) {
+	public SquidInkEntity(EntityType<SquidInkEntity> type, World world) {
 		super(type, world);
 	}
 	
-	public DragonForceEntity(LivingEntity entity, World world) {
-		super(EntityList.DRAGONFORCE_PROJETILE.get(), entity, world);
+	public SquidInkEntity(LivingEntity entity, World world) {
+		super(EntityList.SQUIDINK_PROJETILE.get(), entity, world);
 	}
 	
-	 @OnlyIn(Dist.CLIENT)
-	public DragonForceEntity(World worldIn, double x, double y, double z, double accelX, double accelY, double accelZ) {
-		super(EntityList.DRAGONFORCE_PROJETILE.get(), x, y, z, worldIn);
+	public SquidInkEntity(double x, double y, double z, World world) {
+		super(EntityList.SQUIDINK_PROJETILE.get(), x, y, z, world);
 	}
 
 	@Override
 	protected Item getDefaultItem() {
-		// TODO Auto-generated method stub
-		return ItemList.ENDERDRAGON_SWORD.get().asItem();
+		return ItemList.SQUID_SWORD.get().asItem();
 	}
 	
 	@Override
 	public IPacket<?> createSpawnPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
-
+	
 	public void tick() {
 		RayTraceResult raytraceresult = ProjectileHelper.rayTrace(this, true, false, this.owner, RayTraceContext.BlockMode.COLLIDER);
         if (raytraceresult.getType() != RayTraceResult.Type.MISS && !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, raytraceresult)) {
@@ -72,10 +57,9 @@ public class DragonForceEntity extends ProjectileItemEntity {
         this.setPosition(this.getPosX() + vec3d1.x, this.getPosY() + vec3d1.y, this.getPosZ() + vec3d1.z);
         ProjectileHelper.rotateTowardsMovement(this, 0.5F);
         if (this.world.isRemote) {
-           this.world.addParticle(ParticleTypes.FLAME, this.getPosX() - vec3d1.x, this.getPosY() - vec3d1.y + 0.15D, this.getPosZ() - vec3d1.z, 0.0D, 0.0D, 0.0D);
+           this.world.addParticle(ParticleTypes.SQUID_INK, this.getPosX() - vec3d1.x, this.getPosY() - vec3d1.y + 0.15D, this.getPosZ() - vec3d1.z, 0.0D, 0.0D, 0.0D);
         }
 	}
-	
 	
 	public boolean canBeCollidedWith() {
 	      return true;
@@ -93,38 +77,14 @@ public class DragonForceEntity extends ProjectileItemEntity {
 	         Entity entity = ((EntityRayTraceResult)result).getEntity();
 	         entity.attackEntityFrom(DamageSource.causeIndirectDamage(this, this.owner).setProjectile(), 4.0F);
 	            this.applyEnchantments(this.owner, entity);
-	           ((LivingEntity)entity).addPotionEffect(new EffectInstance(Effects.WITHER, 60));
-	           ((LivingEntity)entity).addPotionEffect(new EffectInstance(Effects.WEAKNESS, 300));
-	           entity.setFire(7);
-	           entity.addVelocity(0, 2, 0);
+	           ((LivingEntity)entity).addPotionEffect(new EffectInstance(Effects.BLINDNESS, 120));
+	           this.playSound(SoundEvents.ENTITY_PLAYER_HURT_DROWN, 1.0F, 1.0F);
+
+
 	           if(!world.isRemote) {
 					this.remove();
 				}
 	              
 		 }
-	            if (result.getType() == RayTraceResult.Type.BLOCK) {
-	            	
-	            	BlockRayTraceResult blockRTR = (BlockRayTraceResult)result;
-	            	if(blockRTR.getFace() == Direction.UP) {
-	            	boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.world, this.owner);	
-	    			world.createExplosion((Entity)null, this.getPosX(), this.getPosY(), this.getPosZ(), (float)this.explosionPower, flag, flag ? Explosion.Mode.DESTROY : Explosion.Mode.NONE);
-	    		
-	             if(!world.isRemote) {
-	    			this.remove();
-	    				}
-	            	 }
-	              
-	            if(!world.isRemote) {
-	    					this.remove();
-	    				}
-	            }
-	      }
-	
-		
-
-
+	}
 }
-
-
-
-

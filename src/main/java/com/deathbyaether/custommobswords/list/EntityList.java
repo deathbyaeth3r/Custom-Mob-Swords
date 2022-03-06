@@ -3,6 +3,7 @@ package com.deathbyaether.custommobswords.list;
 import com.deathbyaether.custommobswords.Main;
 import com.deathbyaether.custommobswords.objects.entities.CreeperProjectileEntity;
 import com.deathbyaether.custommobswords.objects.entities.DragonForceEntity;
+import com.deathbyaether.custommobswords.objects.entities.SquidInkEntity;
 
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -20,4 +21,7 @@ public class EntityList {
 	
 	public static final RegistryObject<EntityType<DragonForceEntity>> DRAGONFORCE_PROJETILE = ENTITIES.register("dragonforce_projectile", 
 			() -> EntityType.Builder.<DragonForceEntity>create(DragonForceEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("dragonforce_projectile"));
+	
+	public static final RegistryObject<EntityType<SquidInkEntity>> SQUIDINK_PROJETILE = ENTITIES.register("squidink_projectile", 
+			() -> EntityType.Builder.<SquidInkEntity>create(SquidInkEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("squidink_projectile"));
 }
