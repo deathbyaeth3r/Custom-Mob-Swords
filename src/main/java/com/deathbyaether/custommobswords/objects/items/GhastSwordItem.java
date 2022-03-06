@@ -9,6 +9,7 @@ import com.deathbyaether.custommobswords.util.enums.ModItemTier;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.util.InputMappings;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.Pose;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FireballEntity;
@@ -16,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
@@ -48,6 +50,15 @@ public class GhastSwordItem extends SwordItem {
 		}
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
+	
+	public boolean onLeftClickEntity(ItemStack stack, PlayerEntity playerIn, Entity entity) {
+		
+		playerIn.playSound(SoundEvents.ENTITY_GHAST_SCREAM, 5F, 0.8F + random.nextFloat() * 0.3F);
+		
+	                        
+	return super.onLeftClickEntity(stack, playerIn, entity);
+}
+ 
 	
 	
 		public ActionResult<ItemStack> onItemRightClick (World worldIn, PlayerEntity playerIn, Hand handIn) {
