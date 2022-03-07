@@ -63,15 +63,15 @@ public ActionResult<ItemStack> onItemRightClick (World worldIn, PlayerEntity pla
 		
 		if(!worldIn.isRemote) {
 			
-			playerIn.addPotionEffect(new EffectInstance(Effects.REGENERATION, 100, 7) );
-			playerIn.addPotionEffect(new EffectInstance(Effects.STRENGTH, 100, 7) );
-			playerIn.addPotionEffect(new EffectInstance(Effects.RESISTANCE, 100, 7) );
-			
 			BeeStingProjectileEntity beesting_projectile = new BeeStingProjectileEntity(playerIn, worldIn);
 			
 			beesting_projectile.setItem(stack);
 			beesting_projectile.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 2F, 1.0F);
 			worldIn.addEntity(beesting_projectile);
+			
+			playerIn.addPotionEffect(new EffectInstance(Effects.REGENERATION, 300, 7) );
+			playerIn.addPotionEffect(new EffectInstance(Effects.STRENGTH, 300, 7) );
+			playerIn.addPotionEffect(new EffectInstance(Effects.RESISTANCE, 300, 7) );
 			
 			playerIn.getCooldownTracker().setCooldown(this, 100);
 				

@@ -9,7 +9,7 @@ import net.minecraft.item.crafting.Ingredient;
 
 public enum ModItemTier implements IItemTier {
 
-    SWORD_GEM(0, 0, 0F, 0F, 0, () -> {
+    SWORD_GEM(0, 0, 10F, 0F, 0, () -> {
         return Ingredient.fromItems(ItemList.SWORD_GEMSTONE.get());
     });
 
