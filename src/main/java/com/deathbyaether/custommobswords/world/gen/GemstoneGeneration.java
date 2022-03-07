@@ -18,7 +18,7 @@ public class GemstoneGeneration {
 					Feature.ORE
 							.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
 									BlockList.GEMSTONE_ORE.get().getDefaultState(), 10))
-							.withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(7, 16, 8, 64))));
+							.withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(2, 0, 0, 16))));
 		}
 	}
 	
