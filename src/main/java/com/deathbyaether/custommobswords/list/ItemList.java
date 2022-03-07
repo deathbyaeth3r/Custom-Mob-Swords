@@ -26,7 +26,7 @@ public class ItemList
 
 	
 	
-	public static final RegistryObject<Item> SWORD_GEMSTONE = ITEMS.register("sword_gemstone", () -> new Item(new Item.Properties().group(ItemGroup.MISC)));
+	public static final RegistryObject<Item> SWORD_GEMSTONE = ITEMS.register("sword_gemstone", () -> new Item(new Item.Properties().group(SwordTab)));
 	
 	//passive + neutral mobs 
 	public static final RegistryObject<SquidSwordItem> SQUID_SWORD = ITEMS.register("squid_sword", () -> new SquidSwordItem(ModItemTier.SWORD_GEM, 0, 0, new Item.Properties().group(SwordTab)));
