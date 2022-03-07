@@ -1,6 +1,7 @@
 package com.deathbyaether.custommobswords.list;
 
 import com.deathbyaether.custommobswords.Main;
+import com.deathbyaether.custommobswords.objects.entities.BeeStingProjectileEntity;
 import com.deathbyaether.custommobswords.objects.entities.CreeperProjectileEntity;
 import com.deathbyaether.custommobswords.objects.entities.DragonForceEntity;
 import com.deathbyaether.custommobswords.objects.entities.SquidInkEntity;
@@ -24,4 +25,7 @@ public class EntityList {
 	
 	public static final RegistryObject<EntityType<SquidInkEntity>> SQUIDINK_PROJETILE = ENTITIES.register("squidink_projectile", 
 			() -> EntityType.Builder.<SquidInkEntity>create(SquidInkEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("squidink_projectile"));
+	
+	public static final RegistryObject<EntityType<BeeStingProjectileEntity>> BEESTING_PROJETILE = ENTITIES.register("beesting_projectile", 
+			() -> EntityType.Builder.<BeeStingProjectileEntity>create(BeeStingProjectileEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("beesting_projectile"));
 }

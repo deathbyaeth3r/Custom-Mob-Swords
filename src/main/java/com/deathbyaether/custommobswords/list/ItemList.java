@@ -2,7 +2,6 @@ package com.deathbyaether.custommobswords.list;
 
 import com.deathbyaether.custommobswords.Main;
 import com.deathbyaether.custommobswords.objects.items.CreeperSwordItem;
-import com.deathbyaether.custommobswords.objects.items.DiamondchickenSwordItem;
 import com.deathbyaether.custommobswords.objects.items.EnderdragonSwordItem;
 import com.deathbyaether.custommobswords.objects.items.EndermanSwordItem;
 import com.deathbyaether.custommobswords.objects.items.GhastSwordItem;
@@ -52,7 +51,7 @@ public class ItemList
 	
 	//special mobs
 	public static final RegistryObject<SwordItem> BEE_SWORD = ITEMS.register("bee_sword", () -> new SwordItem(ModItemTier.SWORD_GEM, 0, 0, new Item.Properties().group(SwordTab)));
-	public static final RegistryObject<DiamondchickenSwordItem> DIAMONDCHICKEN_SWORD = ITEMS.register("diamondchicken_sword", () -> new DiamondchickenSwordItem(ModItemTier.SWORD_GEM, 0, 0, new Item.Properties().group(SwordTab)));
+	
 	
 	
 	
