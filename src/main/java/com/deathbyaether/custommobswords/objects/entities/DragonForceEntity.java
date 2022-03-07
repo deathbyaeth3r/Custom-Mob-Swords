@@ -105,14 +105,14 @@ public class DragonForceEntity extends ProjectileItemEntity {
 	            if (result.getType() == RayTraceResult.Type.BLOCK) {
 	            	
 	            	BlockRayTraceResult blockRTR = (BlockRayTraceResult)result;
-	            	if(blockRTR.getFace() == Direction.UP) {
+	            	
 	            	boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.world, this.owner);	
 	    			world.createExplosion((Entity)null, this.getPosX(), this.getPosY(), this.getPosZ(), (float)this.explosionPower, flag, flag ? Explosion.Mode.DESTROY : Explosion.Mode.NONE);
 	    		
-	             if(!world.isRemote) {
-	    			this.remove();
+	    			if(!world.isRemote) {
+	    				this.remove();
 	    				}
-	            	 }
+	            	 
 	              
 	            if(!world.isRemote) {
 	    					this.remove();
