@@ -1,27 +1,26 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "X",
-    "A",
-   "E#E"
-  ],
-  "key": {
-    "#": {
-      "item": "minecraft:stick"
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        " M ",
+        "E/E"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:dragon_breath"
+        },
+        "M": {
+            "item": "mobswords:sword_gemstone"
+        },
+        "E": {
+            "item": "minecraft:end_crystal"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
     },
-    "E": {
-      "item": "minecraft:end_crystal"
-    }
-  },
-    "X": {
-      "item": "minecraft:dragon_breath"
-    }
-  },
-  "A": {
-      "item": "mobswords:gemstone_ore"
-    }
-  },
   "result": {
-    "item": "mobswords:enderdragon_sword"
+    "item": "mobswords:enderdragon_sword",
+    "count": 1
   }
 }

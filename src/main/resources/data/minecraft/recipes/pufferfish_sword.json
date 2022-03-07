@@ -1,23 +1,23 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "X",
-    "A",
-    "#"
-  ],
-  "key": {
-    "#": {
-      "item": "minecraft:stick"
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#",
+        "M",
+        "/"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:pufferfish"
+        },
+        "M": {
+            "item": "mobswords:sword_gemstone"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
     },
-    "X": {
-      "item": "minecraft:pufferfish"
-    }
-  },
-  "A": {
-      "item": "mobswords:gemstone_ore"
-    }
-  },
   "result": {
-    "item": "mobswords:pufferfish_sword"
+    "item": "mobswords:pufferfish_sword",
+    "count": 1
   }
 }

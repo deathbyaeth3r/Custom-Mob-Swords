@@ -1,23 +1,23 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "X",
-    "A",
-    "#"
-  ],
-  "key": {
-    "#": {
-      "item": "minecraft:stick"
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#",
+        "M",
+        "/"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:ink_sac"
+        },
+        "M": {
+            "item": "mobswords:sword_gemstone"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
     },
-    "X": {
-      "item": "minecraft:ink_sac"
-    }
-  },
-  "A": {
-      "item": "mobswords:gemstone_ore"
-    }
-  },
   "result": {
-    "item": "mobswords:squid_sword"
+    "item": "mobswords:squid_sword",
+    "count": 1
   }
 }
