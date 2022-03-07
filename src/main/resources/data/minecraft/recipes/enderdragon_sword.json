@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "A",
+   "E#E"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "E": {
+      "item": "minecraft:end_crystal"
+    }
+  },
+    "X": {
+      "item": "minecraft:dragon_breath"
+    }
+  },
+  "A": {
+      "item": "mobswords:gemstone_ore"
+    }
+  },
+  "result": {
+    "item": "mobswords:enderdragon_sword"
+  }
+}

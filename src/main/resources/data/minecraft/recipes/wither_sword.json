@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+   "WXW",
+    "A",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "W": {
+      "item": "minecraft:wither_skeleton_skull"
+    }
+  },
+    "X": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "A": {
+      "item": "mobswords:gemstone_ore"
+    }
+  },
+  "result": {
+    "item": "mobswords:wither_sword"
+  }
+}

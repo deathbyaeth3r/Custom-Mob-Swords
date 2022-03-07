@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "A",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "minecraft:pufferfish"
+    }
+  },
+  "A": {
+      "item": "mobswords:gemstone_ore"
+    }
+  },
+  "result": {
+    "item": "mobswords:pufferfish_sword"
+  }
+}

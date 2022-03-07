@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "A",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "minecraft:ghast_tear"
+    }
+  },
+  "A": {
+      "item": "mobswords:gemstone_ore"
+    }
+  },
+  "result": {
+    "item": "mobswords:ghast_sword"
+  }
+}
