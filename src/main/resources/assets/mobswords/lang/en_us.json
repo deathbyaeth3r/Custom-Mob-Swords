@@ -3,6 +3,16 @@
  "item.mobswords.creeper_sword": "Creeper Sword",
  "item.mobswords.wither_sword": "Wither Sword",
  "item.mobswords.ghast_sword": "Ghast Sword",
+ "item.mobswords.bee_sword": "Bee Sword",
+ "item.mobswords.enderman_sword": "Enderman Sword",
+ "item.mobswords.pufferfish_sword": "PufferFish Sword",
+ "item.mobswords.skeleton_sword": "Skeleton Sword",
+ "item.mobswords.squid_sword": "Squid Sword",
+ "item.mobswords.enderdragon_sword": "Ender Dragon Sword",
+ "item.mobswords.sword_gemstone": "Sword Gemstone",
+ 
+ "block.mobswords.gemstone_ore": "Gemstone Ore",
+
  
  "itemGroup.swords_group": "Custom Swords"
 
