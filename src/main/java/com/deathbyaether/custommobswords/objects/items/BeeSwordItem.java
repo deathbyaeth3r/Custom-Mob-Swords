@@ -40,7 +40,7 @@ public class BeeSwordItem extends SwordItem {
 		// TODO Auto-generated method stub
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 		if (InputMappings.isKeyDown(Minecraft.getInstance().getMainWindow().getHandle(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
-			tooltip.add(new StringTextComponent("right click for projectile"));
+			tooltip.add(new StringTextComponent("Fires a bee stinger on right click"));
 		} else {
 			
 			tooltip.add(new StringTextComponent("Hold" + "\u00A7e" + " Shift " + "\u00A77" + "for projectile!"));
@@ -51,7 +51,7 @@ public class BeeSwordItem extends SwordItem {
 	public boolean onLeftClickEntity(ItemStack stack, PlayerEntity playerIn, Entity entity) {
 		
 		playerIn.playSound(SoundEvents.ENTITY_BEE_STING, 5F, 0.8F + random.nextFloat() * 0.3F);
-		((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.POISON, 100, 2));
+		((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.POISON, 390, 2));
 	                        
 	return super.onLeftClickEntity(stack, playerIn, entity);
 	}
@@ -69,9 +69,9 @@ public ActionResult<ItemStack> onItemRightClick (World worldIn, PlayerEntity pla
 			beesting_projectile.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 2F, 1.0F);
 			worldIn.addEntity(beesting_projectile);
 			
-			playerIn.addPotionEffect(new EffectInstance(Effects.REGENERATION, 300, 7) );
-			playerIn.addPotionEffect(new EffectInstance(Effects.STRENGTH, 300, 7) );
-			playerIn.addPotionEffect(new EffectInstance(Effects.RESISTANCE, 300, 7) );
+			playerIn.addPotionEffect(new EffectInstance(Effects.REGENERATION, 1300, 7) );
+			playerIn.addPotionEffect(new EffectInstance(Effects.STRENGTH, 1300, 7) );
+			playerIn.addPotionEffect(new EffectInstance(Effects.RESISTANCE, 1300, 7) );
 			
 			playerIn.getCooldownTracker().setCooldown(this, 100);
 				

@@ -93,8 +93,8 @@ public class DragonForceEntity extends ProjectileItemEntity {
 	         Entity entity = ((EntityRayTraceResult)result).getEntity();
 	         entity.attackEntityFrom(DamageSource.causeIndirectDamage(this, this.owner).setProjectile(), 4.0F);
 	            this.applyEnchantments(this.owner, entity);
-	           ((LivingEntity)entity).addPotionEffect(new EffectInstance(Effects.WITHER, 60));
-	           ((LivingEntity)entity).addPotionEffect(new EffectInstance(Effects.WEAKNESS, 300));
+	           ((LivingEntity)entity).addPotionEffect(new EffectInstance(Effects.WITHER, 390));
+	           ((LivingEntity)entity).addPotionEffect(new EffectInstance(Effects.WEAKNESS, 1300));
 	           entity.setFire(7);
 	           entity.addVelocity(0, 2, 0);
 	           if(!world.isRemote) {

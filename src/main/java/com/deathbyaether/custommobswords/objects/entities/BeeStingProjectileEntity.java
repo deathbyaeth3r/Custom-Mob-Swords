@@ -79,8 +79,8 @@ public class BeeStingProjectileEntity extends ProjectileItemEntity {
 	         Entity entity = ((EntityRayTraceResult)result).getEntity();
 	         entity.attackEntityFrom(DamageSource.causeIndirectDamage(this, this.owner).setProjectile(), 4.0F);
 	            this.applyEnchantments(this.owner, entity);
-	           ((LivingEntity)entity).addPotionEffect(new EffectInstance(Effects.POISON, 120));
-	           ((LivingEntity)entity).addPotionEffect(new EffectInstance(Effects.SLOWNESS, 120));
+	           ((LivingEntity)entity).addPotionEffect(new EffectInstance(Effects.POISON, 390));
+	           ((LivingEntity)entity).addPotionEffect(new EffectInstance(Effects.SLOWNESS, 390));
 	           damage = 2;
 	           this.playSound(SoundEvents.ENTITY_BEE_STING, 1.0F, 1.0F);
 

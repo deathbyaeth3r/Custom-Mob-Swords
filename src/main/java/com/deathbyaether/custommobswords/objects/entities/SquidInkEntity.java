@@ -77,7 +77,7 @@ public class SquidInkEntity extends ProjectileItemEntity {
 	         Entity entity = ((EntityRayTraceResult)result).getEntity();
 	         entity.attackEntityFrom(DamageSource.causeIndirectDamage(this, this.owner).setProjectile(), 4.0F);
 	            this.applyEnchantments(this.owner, entity);
-	           ((LivingEntity)entity).addPotionEffect(new EffectInstance(Effects.BLINDNESS, 120));
+	           ((LivingEntity)entity).addPotionEffect(new EffectInstance(Effects.BLINDNESS, 700));
 	           this.playSound(SoundEvents.ENTITY_PLAYER_HURT_DROWN, 1.0F, 1.0F);
 
 

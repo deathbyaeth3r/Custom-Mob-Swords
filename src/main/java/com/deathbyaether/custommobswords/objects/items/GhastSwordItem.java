@@ -54,7 +54,7 @@ public class GhastSwordItem extends SwordItem {
 	public boolean onLeftClickEntity(ItemStack stack, PlayerEntity playerIn, Entity entity) {
 		
 		playerIn.playSound(SoundEvents.ENTITY_GHAST_SCREAM, 5F, 0.8F + random.nextFloat() * 0.3F);
-		
+		entity.setFire(25);
 	                        
 	return super.onLeftClickEntity(stack, playerIn, entity);
 }

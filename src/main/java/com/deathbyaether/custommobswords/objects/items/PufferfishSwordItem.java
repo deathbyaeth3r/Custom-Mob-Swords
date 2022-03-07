@@ -32,25 +32,11 @@ public class PufferfishSwordItem extends SwordItem {
 		
 		
 	}
-	
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		// TODO Auto-generated method stub
-		super.addInformation(stack, worldIn, tooltip, flagIn);
-		if (InputMappings.isKeyDown(Minecraft.getInstance().getMainWindow().getHandle(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
-			tooltip.add(new StringTextComponent("right click for projectile"));
-		} else {
-			
-			tooltip.add(new StringTextComponent("Hold" + "\u00A7e" + " Shift " + "\u00A77" + "for projectile!"));
-		}
-		super.addInformation(stack, worldIn, tooltip, flagIn);
-	}
 	public boolean onLeftClickEntity(ItemStack stack, PlayerEntity playerIn, Entity entity) {
 		
 		playerIn.playSound(SoundEvents.ENTITY_PUFFER_FISH_STING, 5F, 0.8F + random.nextFloat() * 0.3F);
-		((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.POISON, 100, 2));
-		playerIn.addPotionEffect(new EffectInstance(Effects.RESISTANCE, 100, 2));
+		((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.POISON, 390, 2));
+		playerIn.addPotionEffect(new EffectInstance(Effects.RESISTANCE, 1300, 2));
 		
 	                        
 	return super.onLeftClickEntity(stack, playerIn, entity);

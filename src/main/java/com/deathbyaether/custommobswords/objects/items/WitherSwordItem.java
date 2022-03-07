@@ -55,7 +55,7 @@ public class WitherSwordItem extends SwordItem {
 	
 	@Override
 	public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
-		((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.WITHER, 100, 2));
+		((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.WITHER, 390, 2));
 		player.playSound(SoundEvents.ENTITY_WITHER_SHOOT, 5F, 0.8F + random.nextFloat() * 0.3F);
 		
 		
