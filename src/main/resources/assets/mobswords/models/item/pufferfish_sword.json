@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "mobswords:item/pufferfish_sword"
+        "layer0": "mobswords:items/pufferfish_sword"
     }
 }

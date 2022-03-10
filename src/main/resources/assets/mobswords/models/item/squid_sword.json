@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "mobswords:item/squid_sword"
+        "layer0": "mobswords:items/squid_sword"
     }
 }

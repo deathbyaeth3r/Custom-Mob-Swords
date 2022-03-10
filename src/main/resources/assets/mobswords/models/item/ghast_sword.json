@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "mobswords:item/ghast_sword"
+        "layer0": "mobswords:items/ghast_sword"
     }
 }
