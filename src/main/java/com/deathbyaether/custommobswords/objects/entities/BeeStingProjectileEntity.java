@@ -35,15 +35,17 @@ public class BeeStingProjectileEntity extends ProjectileItemEntity {
 	public BeeStingProjectileEntity(double x, double y, double z, World world) {
 		super(EntityList.BEESTING_PROJETILE.get(), x, y, z, world);
 	}
-
+	
 	@Override
 	protected Item getDefaultItem() {
-		return ItemList.BEE_SWORD.get().asItem();
+		return ItemList.BEE_SWORD.get();
 	}
+	
 	
 	@Override
 	public IPacket<?> createSpawnPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
+		
 	}
 	
 	public void tick() {

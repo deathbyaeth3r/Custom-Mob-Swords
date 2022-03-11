@@ -38,7 +38,7 @@ public class SquidInkEntity extends ProjectileItemEntity {
 
 	@Override
 	protected Item getDefaultItem() {
-		return ItemList.SQUID_SWORD.get().asItem();
+		return ItemList.SQUID_SWORD.get();
 	}
 	
 	@Override

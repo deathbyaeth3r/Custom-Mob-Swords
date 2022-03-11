@@ -54,7 +54,7 @@ public class CreeperProjectileEntity extends ProjectileItemEntity {
 	
 	@Override
 	protected Item getDefaultItem() {
-		return ItemList.CREEPER_SWORD.get().asItem();
+		return ItemList.CREEPER_SWORD.get();
 	}
 	
 	

@@ -45,7 +45,7 @@ public class DragonForceEntity extends ProjectileItemEntity {
 		super(EntityList.DRAGONFORCE_PROJETILE.get(), entity, world);
 	}
 	
-	 @OnlyIn(Dist.CLIENT)
+	
 	public DragonForceEntity(World worldIn, double x, double y, double z, double accelX, double accelY, double accelZ) {
 		super(EntityList.DRAGONFORCE_PROJETILE.get(), x, y, z, worldIn);
 	}
@@ -53,7 +53,7 @@ public class DragonForceEntity extends ProjectileItemEntity {
 	@Override
 	protected Item getDefaultItem() {
 		// TODO Auto-generated method stub
-		return ItemList.ENDERDRAGON_SWORD.get().asItem();
+		return ItemList.ENDERDRAGON_SWORD.get();
 	}
 	
 	@Override
