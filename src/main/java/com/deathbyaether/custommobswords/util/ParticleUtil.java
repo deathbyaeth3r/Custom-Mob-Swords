@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 public class ParticleUtil {
 	
 	
+	@SuppressWarnings("resource")
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public static void registerParticles(ParticleFactoryRegisterEvent event) {
 		Minecraft.getInstance().particles.registerFactory(ParticleList.DRAGONFIRE_PARTICLE.get(), DragonFireParticle.Factory::new);

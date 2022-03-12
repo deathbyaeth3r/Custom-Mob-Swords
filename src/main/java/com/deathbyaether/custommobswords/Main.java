@@ -116,7 +116,7 @@ public class Main
 
 		@Override
 		public ItemStack createIcon() {
-			return new ItemStack(null);
+			return new ItemStack(ItemList.BEE_SWORD.get());
 		}
 		
 	}

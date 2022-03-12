@@ -18,7 +18,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class BeeStingProjectileRenderer extends EntityRenderer<BeeStingProjectileEntity> {
 
-    public static final ResourceLocation BEESTING_ENTITY = new ResourceLocation(Main.MOD_ID, "textures/entity/diamond_sword.png");
+    public static final ResourceLocation BEESTING_ENTITY = new ResourceLocation(Main.MOD_ID, "textures/entity/bee_sting.png");
     private static final RenderType field_229044_e_ = RenderType.getEntityCutoutNoCull(BEESTING_ENTITY);
     public BeeStingProjectileRenderer(EntityRendererManager renderManagerIn) {
         super(renderManagerIn);

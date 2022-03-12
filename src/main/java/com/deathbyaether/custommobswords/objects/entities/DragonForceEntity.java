@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import com.deathbyaether.custommobswords.list.EntityList;
 import com.deathbyaether.custommobswords.list.ItemList;
+import com.deathbyaether.custommobswords.list.ParticleList;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
@@ -72,7 +73,9 @@ public class DragonForceEntity extends ProjectileItemEntity {
         this.setPosition(this.getPosX() + vec3d1.x, this.getPosY() + vec3d1.y, this.getPosZ() + vec3d1.z);
         ProjectileHelper.rotateTowardsMovement(this, 0.5F);
         if (this.world.isRemote) {
-           this.world.addParticle(ParticleTypes.FLAME, this.getPosX() - vec3d1.x, this.getPosY() - vec3d1.y + 0.15D, this.getPosZ() - vec3d1.z, 0.0D, 0.0D, 0.0D);
+        	
+        	this.world.addParticle(ParticleTypes.FLAME, this.getPosX() - vec3d1.x, this.getPosY() - vec3d1.y + 0.15D, this.getPosZ() - vec3d1.z, 0.0D, 0.0D, 0.0D);
+          //this.world.addParticle(ParticleList.DRAGONFIRE_PARTICLE, this.getPosX() - vec3d1.x, this.getPosY() - vec3d1.y + 0.15D, this.getPosZ() - vec3d1.z, 0.0D, 0.0D, 0.0D);
         }
 	}
 	
