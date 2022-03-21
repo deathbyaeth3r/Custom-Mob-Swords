@@ -17,7 +17,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class DragonForceRenderer extends EntityRenderer<DragonForceEntity> {
 
-    public static final ResourceLocation DRAGONFORCE_ENTITY = new ResourceLocation(Main.MOD_ID, "textures/entity/diamond_sword.png");
+    public static final ResourceLocation DRAGONFORCE_ENTITY = new ResourceLocation(Main.MOD_ID, "textures/entity/dragon_force.png");
     private static final RenderType field_229044_e_ = RenderType.getEntityCutoutNoCull(DRAGONFORCE_ENTITY);
     public DragonForceRenderer(EntityRendererManager renderManagerIn) {
         super(renderManagerIn);
