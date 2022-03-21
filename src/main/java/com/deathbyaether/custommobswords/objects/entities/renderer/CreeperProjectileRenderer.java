@@ -17,7 +17,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class CreeperProjectileRenderer extends EntityRenderer<CreeperProjectileEntity> {
 
-    public static final ResourceLocation CREEPER_ENTITY = new ResourceLocation(Main.MOD_ID, "textures/entity/diamond_sword.png");
+    public static final ResourceLocation CREEPER_ENTITY = new ResourceLocation(Main.MOD_ID, "textures/entity/creeper_projectile.png");
     private static final RenderType field_229044_e_ = RenderType.getEntityCutoutNoCull(CREEPER_ENTITY);
     public CreeperProjectileRenderer(EntityRendererManager renderManagerIn) {
         super(renderManagerIn);

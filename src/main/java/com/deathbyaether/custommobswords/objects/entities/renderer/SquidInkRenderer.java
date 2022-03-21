@@ -17,7 +17,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class SquidInkRenderer extends EntityRenderer<SquidInkEntity> {
 
-    public static final ResourceLocation SQUIDINK_ENTITY = new ResourceLocation(Main.MOD_ID, "textures/entity/diamond_sword.png");
+    public static final ResourceLocation SQUIDINK_ENTITY = new ResourceLocation(Main.MOD_ID, "textures/entity/squidink_projectile.png");
     private static final RenderType field_229044_e_ = RenderType.getEntityCutoutNoCull(SQUIDINK_ENTITY);
     public SquidInkRenderer(EntityRendererManager renderManagerIn) {
         super(renderManagerIn);
