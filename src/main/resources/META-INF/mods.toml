@@ -12,11 +12,11 @@ version="1.0"
 
 displayName="Custom Mob Swords"
 
-updateJSONURL="http://myurl.me/"
+updateJSONURL="n/a"
 
-displayURL="http://example.com/"
+displayURL="n/a"
 
-logoFile="examplemod.png"
+logoFile="mobswords.png"
 
 credits="n/a"
 
