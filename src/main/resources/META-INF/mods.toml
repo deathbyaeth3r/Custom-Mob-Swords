@@ -12,15 +12,15 @@ version="1.0"
 
 displayName="Custom Mob Swords"
 
-updateJSONURL="n/a"
+updateJSONURL="http://myurl.me/"
 
-displayURL="n/a"
+displayURL="http://example.com/"
 
 logoFile="mobswords.png"
 
-credits="n/a"
+credits="@deathbyaeth3r"
 
-authors="@deathbyaether"
+authors="@deathbyaeth3r"
 
 description='This mod has been created to help viewers with making their mod for Minecraft Forge 1.15+'
 
