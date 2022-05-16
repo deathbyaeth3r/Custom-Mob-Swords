@@ -1,3 +1,4 @@
+
 package com.deathbyaether.custommobswords.list;
 
 import com.deathbyaether.custommobswords.Main;
@@ -14,7 +15,6 @@ import com.deathbyaether.custommobswords.util.enums.ModItemTier;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.item.SwordItem;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
