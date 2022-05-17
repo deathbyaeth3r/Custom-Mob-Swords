@@ -21,4 +21,5 @@ public class BlockList
 	
 	public static final DeferredRegister<Block> NO_ITEM_BLOCK = new DeferredRegister<>(ForgeRegistries.BLOCKS, Main.MOD_ID);
 	
+	
 }
