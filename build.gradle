@@ -13,7 +13,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.15.2-1.2A'
+version = '1.15.2-1.3B'
 group = 'com.deathbyaether.mobswords' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'mobswords'
 
