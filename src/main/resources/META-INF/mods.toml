@@ -2,13 +2,15 @@ modLoader="javafml"
 
 loaderVersion="[31,)"
 
-issueTrackerURL="http://my.issue.tracker/"
+license="All rights reserved"
+
+issueTrackerURL="https://github.com/deathbyaeth3r/Custom-Mob-Swords/issues"
 
 [[mods]]
 
 modId="mobswords"
 
-version="1.0"
+version="1.15.2-1.3B"
 
 displayName="Custom Mob Swords"
 
@@ -22,7 +24,7 @@ credits="@deathbyaeth3r"
 
 authors="@deathbyaeth3r"
 
-description='This mod has been created to help viewers with making their mod for Minecraft Forge 1.15+'
+description='Custom Mob Swords adds vanilla mob-based swords into Minecraft. Each sword has a few special abilities ranging from damaging projectiles to potion effects.'
 
 
 
