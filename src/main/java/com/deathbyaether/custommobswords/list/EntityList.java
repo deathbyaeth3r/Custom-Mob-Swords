@@ -15,7 +15,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class EntityList {
 
 	
-	public static final DeferredRegister<EntityType<?>> ENTITIES = new DeferredRegister<>(ForgeRegistries.ENTITIES, Main.MOD_ID);
+	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, Main.MOD_ID);
 	
 	public static final RegistryObject<EntityType<CreeperProjectileEntity>> CREEPER_PROJETILE = ENTITIES.register("creeper_projectile", 
 			() -> EntityType.Builder.<CreeperProjectileEntity>create(CreeperProjectileEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("creeper_projectile"));

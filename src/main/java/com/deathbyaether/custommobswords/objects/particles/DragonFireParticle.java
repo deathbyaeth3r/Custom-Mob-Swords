@@ -1,3 +1,4 @@
+/**
 package com.deathbyaether.custommobswords.objects.particles;
 
 import net.minecraft.client.particle.IAnimatedSprite;
@@ -5,6 +6,7 @@ import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.client.particle.IParticleRenderType;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.SpriteTexturedParticle;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -13,7 +15,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 	@OnlyIn(Dist.CLIENT)
 	public class DragonFireParticle extends SpriteTexturedParticle {
-	   private DragonFireParticle(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn) {
+	   private DragonFireParticle(ClientWorld worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn) {
 	      super(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);
 	      this.motionX = this.motionX * (double)0.01F + xSpeedIn;
 	      this.motionY = this.motionY * (double)0.01F + ySpeedIn;
@@ -75,16 +77,17 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 	   public static class Factory implements IParticleFactory<BasicParticleType> {
 	      private final IAnimatedSprite spriteSet;
 
-	      public Factory(IAnimatedSprite p_i50823_1_) {
-	         this.spriteSet = p_i50823_1_;
+	      public Factory(IAnimatedSprite spriteSet) {
+	         this.spriteSet = spriteSet;
 	      }
 
-	      public Particle makeParticle(BasicParticleType typeIn, World worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-	    	  DragonFireParticle dragonflameparticle = new DragonFireParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
-	    	  dragonflameparticle.selectSpriteRandomly(this.spriteSet);
+		public Particle createParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z,
+				double xSpeed, double ySpeed, double zSpeed) {
+			DragonFireParticle dragonflameparticle = new DragonFireParticle((ClientWorld) worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
+	    	  dragonflameparticle.pickSprite(this.spriteSet);
 	         return dragonflameparticle;
-	      }
+		}
 	   }
 	}
 
-
+**/

@@ -1,15 +1,17 @@
 package com.deathbyaether.custommobswords.objects.entities;
 
+import java.util.UUID;
+
+import javax.annotation.Nullable;
+
 import com.deathbyaether.custommobswords.list.EntityList;
 import com.deathbyaether.custommobswords.list.ItemList;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundNBT;
@@ -19,9 +21,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -37,6 +37,8 @@ public class CreeperProjectileEntity extends ProjectileItemEntity {
 	   private static final DataParameter<Boolean> IGNITED = EntityDataManager.createKey(CreeperEntity.class, DataSerializers.BOOLEAN);
 	   private int fuseTime = 30;
 	   private int explosionRadius = 3;
+	   private LivingEntity owner;
+	   private UUID ownerId;
 
 	
 	public CreeperProjectileEntity(EntityType<CreeperProjectileEntity> type, World world) {
@@ -171,11 +173,26 @@ public class CreeperProjectileEntity extends ProjectileItemEntity {
 			
 		}
 		
+		
 		if(!world.isRemote) {
 			this.remove();
 		}
 		
 	}
+
+	@Nullable
+	   public LivingEntity getThrower() {
+	      if ((this.owner == null || this.owner.removed) && this.ownerId != null && this.world instanceof ServerWorld) {
+	         Entity entity = ((ServerWorld)this.world).getEntityByUuid(this.ownerId);
+	         if (entity instanceof LivingEntity) {
+	            this.owner = (LivingEntity)entity;
+	         } else {
+	            this.owner = null;
+	         }
+	      }
+
+	      return this.owner;
+	   }
 
 	
 	

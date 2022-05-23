@@ -1,6 +1,6 @@
 modLoader="javafml"
 
-loaderVersion="[31,)"
+loaderVersion="[36,)"
 
 license="All rights reserved"
 
@@ -10,7 +10,7 @@ issueTrackerURL="https://github.com/deathbyaeth3r/Custom-Mob-Swords/issues"
 
 modId="mobswords"
 
-version="1.15.2-1.3B"
+version="1.16.5-2.0A"
 
 displayName="Custom Mob Swords"
 
@@ -35,7 +35,7 @@ description='Custom Mob Swords adds vanilla mob-based swords into Minecraft. Eac
     # Does this dependency have to exist - if not, ordering below must be specified
     mandatory=true #mandatory
     # The version range of the dependency
-    versionRange="[31,)" #mandatory
+    versionRange="[36,)" #mandatory
     # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
     ordering="NONE"
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
@@ -44,6 +44,6 @@ description='Custom Mob Swords adds vanilla mob-based swords into Minecraft. Eac
 [[dependencies.mobswords]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.15.2]"
+    versionRange="[1.16.5]"
     ordering="NONE"
     side="BOTH"

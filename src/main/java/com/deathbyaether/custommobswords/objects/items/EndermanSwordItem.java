@@ -61,7 +61,7 @@ public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity play
     if (!worldIn.isRemote) {
        EnderPearlEntity enderpearlentity = new EnderPearlEntity(worldIn, playerIn);
        enderpearlentity.setItem(stack);
-       enderpearlentity.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
+       enderpearlentity.setDirectionAndMovement(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
        worldIn.addEntity(enderpearlentity);
        
        playerIn.getCooldownTracker().setCooldown(this, 100);

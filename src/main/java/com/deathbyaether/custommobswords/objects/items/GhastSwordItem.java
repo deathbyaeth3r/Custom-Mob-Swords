@@ -19,7 +19,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -65,7 +65,7 @@ public class GhastSwordItem extends SwordItem {
 			
 			ItemStack stack = playerIn.getHeldItem(handIn);
 			
-			Vec3d vec3d = playerIn.getLookVec();
+			Vector3d vec3d = playerIn.getLookVec();
 			
 			double dX = vec3d.x;
 			double dY = vec3d.y;

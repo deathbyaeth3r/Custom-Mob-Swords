@@ -1,5 +1,7 @@
 package com.deathbyaether.custommobswords.objects.entities;
 
+import java.util.UUID;
+
 import com.deathbyaether.custommobswords.list.EntityList;
 import com.deathbyaether.custommobswords.list.ItemList;
 
@@ -18,11 +20,12 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class BeeStingProjectileEntity extends ProjectileItemEntity {
+	private LivingEntity owner;
 
 	public BeeStingProjectileEntity(EntityType<BeeStingProjectileEntity> type, World world) {
 		super(type, world);
@@ -49,13 +52,13 @@ public class BeeStingProjectileEntity extends ProjectileItemEntity {
 	}
 	
 	public void tick() {
-		RayTraceResult raytraceresult = ProjectileHelper.rayTrace(this, true, false, this.owner, RayTraceContext.BlockMode.COLLIDER);
+		 RayTraceResult raytraceresult = ProjectileHelper.func_234618_a_(this, this::func_230298_a_);
         if (raytraceresult.getType() != RayTraceResult.Type.MISS && !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, raytraceresult)) {
         this.onImpact(raytraceresult);
      }
        
         
-        Vec3d vec3d1 = this.getMotion();
+        Vector3d vec3d1 = this.getMotion();
         this.setPosition(this.getPosX() + vec3d1.x, this.getPosY() + vec3d1.y, this.getPosZ() + vec3d1.z);
         ProjectileHelper.rotateTowardsMovement(this, 0.5F);
         if (this.world.isRemote) {

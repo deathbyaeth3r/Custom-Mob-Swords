@@ -1,3 +1,4 @@
+/**
 package com.deathbyaether.custommobswords.util;
 
 import com.deathbyaether.custommobswords.Main;
@@ -22,3 +23,4 @@ public class ParticleUtil {
 	}
 
 }
+**/

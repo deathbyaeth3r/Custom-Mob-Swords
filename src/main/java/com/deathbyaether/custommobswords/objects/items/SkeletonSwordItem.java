@@ -21,7 +21,6 @@ import net.minecraft.item.SwordItem;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
@@ -68,7 +67,7 @@ public boolean onLeftClickEntity(ItemStack stack, PlayerEntity playerIn, Entity 
 				ArrowItem arrowitem = (ArrowItem)(stack.getItem() instanceof ArrowItem ? stack.getItem() : Items.ARROW);
                 AbstractArrowEntity abstractarrowentity = arrowitem.createArrow(worldIn, stack, playerIn);
                 abstractarrowentity = customeArrow(abstractarrowentity);
-                abstractarrowentity.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 2F, 1.0F);
+                abstractarrowentity.setDirectionAndMovement(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 2F, 1.0F);
                 worldIn.addEntity(abstractarrowentity);
               
 					

@@ -1,3 +1,4 @@
+/**
 package com.deathbyaether.custommobswords.list;
 
 import com.deathbyaether.custommobswords.Main;
@@ -12,9 +13,10 @@ public class ParticleList {
 	
 	
 	@SuppressWarnings("deprecation")
-	public static final DeferredRegister<ParticleType<?>> PARTICLES = new DeferredRegister<>(ForgeRegistries.PARTICLE_TYPES, Main.MOD_ID);
+	public static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, Main.MOD_ID);
 	
 	public static final RegistryObject<BasicParticleType> DRAGONFIRE_PARTICLE = PARTICLES.register("dragonfire_particle", () -> new BasicParticleType(true));
 	
 	
 }
+**/

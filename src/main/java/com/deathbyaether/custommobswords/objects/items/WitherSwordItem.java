@@ -24,7 +24,7 @@ import net.minecraft.realms.RepeatedNarrator;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -65,7 +65,7 @@ public class WitherSwordItem extends SwordItem {
 	public ActionResult<ItemStack> onItemRightClick (World worldIn, PlayerEntity playerIn, Hand handIn) {
 		
 		ItemStack stack = playerIn.getHeldItem(handIn);
-		Vec3d vec3d = playerIn.getLookVec();
+		Vector3d vec3d = playerIn.getLookVec();
 		double dX = vec3d.x;
 		double dY = vec3d.y;
 		double dZ = vec3d.z;

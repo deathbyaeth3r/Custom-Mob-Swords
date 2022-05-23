@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 import com.deathbyaether.custommobswords.list.BlockList;
 import com.deathbyaether.custommobswords.list.EntityList;
 import com.deathbyaether.custommobswords.list.ItemList;
-import com.deathbyaether.custommobswords.list.ParticleList;
 import com.deathbyaether.custommobswords.objects.entities.renderer.BeeStingProjectileRenderer;
 import com.deathbyaether.custommobswords.objects.entities.renderer.CreeperProjectileRenderer;
 import com.deathbyaether.custommobswords.objects.entities.renderer.DragonForceRenderer;
@@ -21,10 +20,11 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -57,7 +57,7 @@ public class Main
 		modEventBus.addListener(this::clientSetup);
 		
 		/* Register all of our deferred registries from our list/init classes, which get added to the IEventBus */
-		ParticleList.PARTICLES.register(modEventBus);
+		//ParticleList.PARTICLES.register(modEventBus);
 		ItemList.ITEMS.register(modEventBus);
 		BlockList.BLOCKS.register(modEventBus);
 		BlockList.NO_ITEM_BLOCK.register(modEventBus);
@@ -84,7 +84,7 @@ public class Main
 	private void setup(final FMLCommonSetupEvent event)
 	{
 		
-		DeferredWorkQueue.runLater(GemstoneGeneration::generate);
+		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, GemstoneGeneration::generateOres);
 		
 	}
 	
@@ -102,7 +102,7 @@ public class Main
 		ItemRenderer renderer = minecraft.get().getItemRenderer();
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityList.CREEPER_PROJETILE.get(), CreeperProjectileRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(EntityList.DRAGONFORCE_PROJETILE.get(), DragonForceRenderer::new);
+		//RenderingRegistry.registerEntityRenderingHandler(EntityList.DRAGONFORCE_PROJETILE.get(), DragonForceRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityList.SQUIDINK_PROJETILE.get(), SquidInkRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityList.BEESTING_PROJETILE.get(), BeeStingProjectileRenderer::new);
 	}

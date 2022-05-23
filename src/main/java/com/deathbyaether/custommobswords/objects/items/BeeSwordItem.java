@@ -26,6 +26,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import net.minecraft.item.Item.Properties;
+
 public class BeeSwordItem extends SwordItem {
 
 	public BeeSwordItem(ModItemTier swordGem, int i, int j, Properties properties) {
@@ -56,7 +58,7 @@ public class BeeSwordItem extends SwordItem {
 	return super.onLeftClickEntity(stack, playerIn, entity);
 	}
 	
-public ActionResult<ItemStack> onItemRightClick (World worldIn, PlayerEntity playerIn, Hand handIn) {
+public ActionResult<ItemStack> use (World worldIn, PlayerEntity playerIn, Hand handIn) {
 		
 		ItemStack stack = playerIn.getHeldItem(handIn);
 		
@@ -67,7 +69,7 @@ public ActionResult<ItemStack> onItemRightClick (World worldIn, PlayerEntity pla
 			BeeStingProjectileEntity beesting_projectile = new BeeStingProjectileEntity(playerIn, worldIn);
 			
 			beesting_projectile.setItem(stack);
-			beesting_projectile.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 2F, 1.0F);
+			beesting_projectile.setDirectionAndMovement(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 2F, 1.0F);
 			worldIn.addEntity(beesting_projectile);
 			
 			playerIn.addPotionEffect(new EffectInstance(Effects.REGENERATION, 1300, 7) );

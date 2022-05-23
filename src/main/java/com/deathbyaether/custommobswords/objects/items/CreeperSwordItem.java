@@ -66,7 +66,7 @@ public class CreeperSwordItem extends SwordItem {
 			CreeperProjectileEntity creeper_projectile = new CreeperProjectileEntity(playerIn, worldIn);
 			
 			creeper_projectile.setItem(stack);
-			creeper_projectile.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 2F, 1.0F);
+			creeper_projectile.setDirectionAndMovement(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 2F, 1.0F);
 			worldIn.addEntity(creeper_projectile);
 			
 			playerIn.getCooldownTracker().setCooldown(this, 100);

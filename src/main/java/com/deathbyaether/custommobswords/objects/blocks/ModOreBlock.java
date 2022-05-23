@@ -10,14 +10,15 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class ModOreBlock extends OreBlock {
 	
 	public ModOreBlock(Properties properties) {
 		super(properties);
 	}
 	
-	@Override
-	protected int getExperience(Random rand) {
+	protected int xpOnDrop(Random rand) {
 		return MathHelper.nextInt(RANDOM, 2, 10);
 	}
 	

@@ -21,13 +21,13 @@ import net.minecraft.item.Item.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
 
 public class SquidSwordItem extends SwordItem {
 
@@ -69,7 +69,7 @@ public ActionResult<ItemStack> onItemRightClick (World worldIn, PlayerEntity pla
 			SquidInkEntity squidink_projectile = new SquidInkEntity(playerIn, worldIn);
 			
 			squidink_projectile.setItem(stack);
-			squidink_projectile.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 2F, 1.0F);
+			squidink_projectile.setDirectionAndMovement(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 2F, 1.0F);
 			worldIn.addEntity(squidink_projectile);
 			
 			playerIn.getCooldownTracker().setCooldown(this, 100);
