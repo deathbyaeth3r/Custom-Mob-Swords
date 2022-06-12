@@ -2,7 +2,6 @@ package com.deathbyaether.custommobswords.objects.items;
 
 import java.util.List;
 
-import org.antlr.v4.runtime.atn.LoopEndState;
 import org.lwjgl.glfw.GLFW;
 
 import com.deathbyaether.custommobswords.util.enums.ModItemTier;
@@ -13,7 +12,6 @@ import net.minecraft.client.util.InputMappings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.ArrowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -21,7 +19,6 @@ import net.minecraft.item.SwordItem;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
