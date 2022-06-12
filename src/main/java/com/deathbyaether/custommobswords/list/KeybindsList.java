@@ -1,10 +1,11 @@
-package com.deathbyaether.custommobswords.list;
+/**package com.deathbyaether.custommobswords.list;
 
 import java.awt.event.KeyEvent;
 
+import javax.swing.text.JTextComponent.KeyBinding;
+
 import com.deathbyaether.custommobswords.Main;
 
-import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -24,3 +25,4 @@ public class KeybindsList {
 		return new KeyBinding("key." + Main.MOD_ID + "." + name, key, "key.category." + Main.MOD_ID);
 	}
 }
+**/

@@ -9,12 +9,12 @@ import net.minecraft.item.crafting.Ingredient;
 
 public enum ModItemTier implements IItemTier {
 
-	SWORD_GEM(0, 0, 0F, 6F, 0, () -> {
-        return Ingredient.fromItems(ItemList.SWORD_GEMSTONE.get());
+    SWORD_GEM(0, 0, 0F, 6F, 0, () -> {
+        return Ingredient.of(ItemList.SWORD_GEMSTONE.get());
     });
 
 
-	private final int harvestLevel;
+    private final int harvestLevel;
     private final int maxUses;
     private final float efficiency;
     private final float attackDamage;
@@ -30,63 +30,33 @@ public enum ModItemTier implements IItemTier {
         this.repairMaterial = repairMaterial;
     }
 
+    @Override
     public int getUses() {
         return maxUses;
     }
 
+    @Override
     public float getSpeed() {
         return efficiency;
     }
 
+    @Override
     public float getAttackDamageBonus() {
         return attackDamage;
     }
 
+    @Override
     public int getLevel() {
         return harvestLevel;
     }
 
+    @Override
     public int getEnchantmentValue() {
         return enchantability;
     }
 
+    @Override
     public Ingredient getRepairIngredient() {
         return repairMaterial.get();
     }
-
-	@Override
-	public int getMaxUses() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public float getEfficiency() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public float getAttackDamage() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getHarvestLevel() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getEnchantability() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Ingredient getRepairMaterial() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

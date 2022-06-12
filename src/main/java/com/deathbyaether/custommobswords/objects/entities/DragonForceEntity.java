@@ -1,10 +1,10 @@
-
 package com.deathbyaether.custommobswords.objects.entities;
 
 import javax.annotation.Nullable;
 
 import com.deathbyaether.custommobswords.list.EntityList;
 import com.deathbyaether.custommobswords.list.ItemList;
+
 
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
@@ -32,12 +32,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class DragonForceEntity extends ProjectileItemEntity {
-	private LivingEntity owner;
 	public int explosionPower = 5;
 	private Entity target;
 	@Nullable
 	private Direction direction;
 	private int steps;
+	private LivingEntity owner;
 
 	public DragonForceEntity(EntityType<DragonForceEntity> type, World world) {
 		super(type, world);
@@ -59,49 +59,49 @@ public class DragonForceEntity extends ProjectileItemEntity {
 	}
 	
 	@Override
-	public IPacket<?> createSpawnPacket() {
+	public IPacket<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
 	public void tick() {
-		 RayTraceResult raytraceresult = ProjectileHelper.func_234618_a_(this, this::func_230298_a_);
+		RayTraceResult raytraceresult = ProjectileHelper.getHitResult(this, this::canHitEntity);
         if (raytraceresult.getType() != RayTraceResult.Type.MISS && !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, raytraceresult)) {
-        this.onImpact(raytraceresult);
+        this.onHit(raytraceresult);
      }
        
         
-        Vector3d vec3d1 = this.getMotion();
-        this.setPosition(this.getPosX() + vec3d1.x, this.getPosY() + vec3d1.y, this.getPosZ() + vec3d1.z);
+        Vector3d vec3d1 = this.getDeltaMovement();
+        this.setPos(this.getX() + vec3d1.x, this.getY() + vec3d1.y, this.getZ() + vec3d1.z);
         ProjectileHelper.rotateTowardsMovement(this, 0.5F);
-        if (this.world.isRemote) {
+        if (this.level.isClientSide) {
         	
-        	this.world.addParticle(ParticleTypes.FLAME, this.getPosX() - vec3d1.x, this.getPosY() - vec3d1.y + 0.15D, this.getPosZ() - vec3d1.z, 0.0D, 0.0D, 0.0D);
+        	this.level.addParticle(ParticleTypes.FLAME, this.getX() - vec3d1.x, this.getY() - vec3d1.y + 0.15D, this.getZ() - vec3d1.z, 0.0D, 0.0D, 0.0D);
           //this.world.addParticle(ParticleList.DRAGONFIRE_PARTICLE, this.getPosX() - vec3d1.x, this.getPosY() - vec3d1.y + 0.15D, this.getPosZ() - vec3d1.z, 0.0D, 0.0D, 0.0D);
         }
 	}
 	
 	
-	public boolean canBeCollidedWith() {
+	public boolean isPickable() {
 	      return true;
 	   }
 
-	public boolean attackEntityFrom(DamageSource source, float amount) {
+	public boolean hurt(DamageSource source, float amount) {
 		
 		 return true;
 	}
 
 	@Override
-	protected void onImpact(RayTraceResult result) {
+	protected void onHit(RayTraceResult result) {
 		
 		 if (result.getType() == RayTraceResult.Type.ENTITY) {
 	         Entity entity = ((EntityRayTraceResult)result).getEntity();
-	         entity.attackEntityFrom(DamageSource.causeIndirectDamage(this, this.owner).setProjectile(), 4.0F);
-	            this.applyEnchantments(this.owner, entity);
-	           ((LivingEntity)entity).addPotionEffect(new EffectInstance(Effects.WITHER, 390));
-	           ((LivingEntity)entity).addPotionEffect(new EffectInstance(Effects.WEAKNESS, 1300));
-	           entity.setFire(7);
-	           entity.addVelocity(0, 2, 0);
-	           if(!world.isRemote) {
+	         entity.hurt(DamageSource.indirectMobAttack(this, this.owner).setProjectile(), 4.0F);
+	            this.doEnchantDamageEffects(this.owner, entity);
+	           ((LivingEntity)entity).addEffect(new EffectInstance(Effects.WITHER, 390));
+	           ((LivingEntity)entity).addEffect(new EffectInstance(Effects.WEAKNESS, 1300));
+	           entity.setSecondsOnFire(7);
+	           entity.push(0, 2, 0);
+	           if(!level.isClientSide) {
 					this.remove();
 				}
 	              
@@ -110,15 +110,15 @@ public class DragonForceEntity extends ProjectileItemEntity {
 	            	
 	            	BlockRayTraceResult blockRTR = (BlockRayTraceResult)result;
 	            	
-	            	boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.world, this.owner);	
-	    			world.createExplosion((Entity)null, this.getPosX(), this.getPosY(), this.getPosZ(), (float)this.explosionPower, flag, flag ? Explosion.Mode.DESTROY : Explosion.Mode.NONE);
+	            	boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.owner);	
+	    			level.explode((Entity)null, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower, flag, flag ? Explosion.Mode.DESTROY : Explosion.Mode.NONE);
 	    		
-	    			if(!world.isRemote) {
+	    			if(!level.isClientSide) {
 	    				this.remove();
 	    				}
 	            	 
 	              
-	            if(!world.isRemote) {
+	            if(!level.isClientSide) {
 	    					this.remove();
 	    				}
 	            }
@@ -128,7 +128,6 @@ public class DragonForceEntity extends ProjectileItemEntity {
 
 
 }
-
 
 
 

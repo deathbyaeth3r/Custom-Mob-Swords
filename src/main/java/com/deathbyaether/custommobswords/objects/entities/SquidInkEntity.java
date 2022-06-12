@@ -24,17 +24,19 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 public class SquidInkEntity extends ProjectileItemEntity {
 	private LivingEntity owner;
-
+	
 	public SquidInkEntity(EntityType<SquidInkEntity> type, World world) {
 		super(type, world);
 	}
-	
-	public SquidInkEntity(LivingEntity entity, World world) {
+
+   public SquidInkEntity(LivingEntity entity, World world) {
 		super(EntityList.SQUIDINK_PROJETILE.get(), entity, world);
 	}
 	
-	public SquidInkEntity(double x, double y, double z, World world) {
-		super(EntityList.SQUIDINK_PROJETILE.get(), x, y, z, world);
+	
+	public SquidInkEntity(World worldIn, double x, double y, double z, double accelX, double accelY, double accelZ) {
+		super(EntityList.SQUIDINK_PROJETILE.get(), x, y, z, worldIn);
+		
 	}
 
 	@Override
@@ -43,46 +45,46 @@ public class SquidInkEntity extends ProjectileItemEntity {
 	}
 	
 	@Override
-	public IPacket<?> createSpawnPacket() {
+	public IPacket<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 	
 	public void tick() {
-		RayTraceResult raytraceresult = ProjectileHelper.func_234618_a_(this, this::func_230298_a_);
+		RayTraceResult raytraceresult = ProjectileHelper.getHitResult(this, this::canHitEntity);
         if (raytraceresult.getType() != RayTraceResult.Type.MISS && !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, raytraceresult)) {
-        this.onImpact(raytraceresult);
+        this.onHit(raytraceresult);
      }
        
         
-        Vector3d vec3d1 = this.getMotion();
-        this.setPosition(this.getPosX() + vec3d1.x, this.getPosY() + vec3d1.y, this.getPosZ() + vec3d1.z);
+        Vector3d vec3d1 = this.getDeltaMovement();
+        this.setPos(this.getX() + vec3d1.x, this.getY() + vec3d1.y, this.getZ() + vec3d1.z);
         ProjectileHelper.rotateTowardsMovement(this, 0.5F);
-        if (this.world.isRemote) {
-           this.world.addParticle(ParticleTypes.SQUID_INK, this.getPosX() - vec3d1.x, this.getPosY() - vec3d1.y + 0.15D, this.getPosZ() - vec3d1.z, 0.0D, 0.0D, 0.0D);
+        if (this.level.isClientSide) {
+           this.level.addParticle(ParticleTypes.SQUID_INK, this.getX() - vec3d1.x, this.getY() - vec3d1.y + 0.15D, this.getZ() - vec3d1.z, 0.0D, 0.0D, 0.0D);
         }
 	}
 	
-	public boolean canBeCollidedWith() {
+	public boolean isPickable() {
 	      return true;
 	   }
 
-	public boolean attackEntityFrom(DamageSource source, float amount) {
+	public boolean hurt(DamageSource source, float amount) {
 		
 		 return true;
 	}
 
 	@Override
-	protected void onImpact(RayTraceResult result) {
+	protected void onHit(RayTraceResult result) {
 		
 		 if (result.getType() == RayTraceResult.Type.ENTITY) {
 	         Entity entity = ((EntityRayTraceResult)result).getEntity();
-	         entity.attackEntityFrom(DamageSource.causeIndirectDamage(this, this.owner).setProjectile(), 4.0F);
-	            this.applyEnchantments(this.owner, entity);
-	           ((LivingEntity)entity).addPotionEffect(new EffectInstance(Effects.BLINDNESS, 700));
-	           this.playSound(SoundEvents.ENTITY_PLAYER_HURT_DROWN, 1.0F, 1.0F);
+	         entity.hurt(DamageSource.indirectMobAttack(this, this.owner).setProjectile(), 4.0F);
+	            this.doEnchantDamageEffects(this.owner, entity);
+	           ((LivingEntity)entity).addEffect(new EffectInstance(Effects.BLINDNESS, 700));
+	           this.playSound(SoundEvents.PLAYER_HURT_DROWN, 1.0F, 1.0F);
 
 
-	           if(!world.isRemote) {
+	           if(!level.isClientSide) {
 					this.remove();
 				}
 	              

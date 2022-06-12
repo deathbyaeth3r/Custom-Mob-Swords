@@ -26,57 +26,62 @@ import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
+
 
 
 
 public class CreeperProjectileEntity extends ProjectileItemEntity {
 	
-	   private static final DataParameter<Integer> STATE = EntityDataManager.createKey(CreeperEntity.class, DataSerializers.VARINT);
-	   private static final DataParameter<Boolean> POWERED = EntityDataManager.createKey(CreeperEntity.class, DataSerializers.BOOLEAN);
-	   private static final DataParameter<Boolean> IGNITED = EntityDataManager.createKey(CreeperEntity.class, DataSerializers.BOOLEAN);
+	   private static final DataParameter<Integer> STATE = EntityDataManager.defineId(CreeperEntity.class, DataSerializers.INT);
+	   private static final DataParameter<Boolean> POWERED = EntityDataManager.defineId(CreeperEntity.class, DataSerializers.BOOLEAN);
+	   private static final DataParameter<Boolean> IGNITED = EntityDataManager.defineId(CreeperEntity.class, DataSerializers.BOOLEAN);
 	   private int fuseTime = 30;
 	   private int explosionRadius = 3;
 	   private LivingEntity owner;
 	   private UUID ownerId;
+	   
 
+
+	   public CreeperProjectileEntity(EntityType<CreeperProjectileEntity> type, World world) {
+			super(type, world);
+		}
+
+	   public CreeperProjectileEntity(LivingEntity entity, World world) {
+			super(EntityList.CREEPER_PROJETILE.get(), entity, world);
+		}
+		
+		
+		public CreeperProjectileEntity(World worldIn, double x, double y, double z, double accelX, double accelY, double accelZ) {
+			super(EntityList.CREEPER_PROJETILE.get(), x, y, z, worldIn);
+			
+		}
+		
+		@Override
+		protected Item getDefaultItem() {
+			return ItemList.CREEPER_SWORD.get();
+		}
 	
-	public CreeperProjectileEntity(EntityType<CreeperProjectileEntity> type, World world) {
-		super(type, world);
-	}
-	
-	public CreeperProjectileEntity(LivingEntity entity, World world) {
-		super(EntityList.CREEPER_PROJETILE.get(), entity, world);
-	}
-	
-	public CreeperProjectileEntity(double x, double y, double z, World world) {
-		super(EntityList.CREEPER_PROJETILE.get(), x, y, z, world);
-	}
 	
 	
 	@Override
-	protected Item getDefaultItem() {
-		return ItemList.CREEPER_SWORD.get();
-	}
-	
-	
-	
-	@Override
-	public IPacket<?> createSpawnPacket() {
+	public IPacket<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 	
 
-	   protected void registerData() {
-	      super.registerData();
-	      this.dataManager.register(STATE, -1);
-	      this.dataManager.register(POWERED, false);
-	      this.dataManager.register(IGNITED, false);
+	   protected void defineSynchedData() {
+	      super.defineSynchedData();
+	      this.entityData.define(STATE, -1);
+	      this.entityData.define(POWERED, false);
+	      this.entityData.define(IGNITED, false);
 	   }
 
-	   public void writeAdditional(CompoundNBT compound) {
-	      super.writeAdditional(compound);
-	      if (this.dataManager.get(POWERED)) {
+	   public void addAdditionalSaveData(CompoundNBT compound) {
+	      super.addAdditionalSaveData(compound);
+	      if (this.entityData.get(POWERED)) {
 	         compound.putBoolean("powered", true);
 	      }
 
@@ -85,24 +90,26 @@ public class CreeperProjectileEntity extends ProjectileItemEntity {
 	      compound.putBoolean("ignited", this.hasIgnited());
 	   }
 	   
+	   
+	   
 	   public boolean isCharged() {
-		      return this.dataManager.get(POWERED);
+		      return this.entityData.get(POWERED);
 		   }
 	   
 	   public boolean hasIgnited() {
-		      return this.dataManager.get(IGNITED);
+		      return this.entityData.get(IGNITED);
 	
 		   }
 	   public void ignite() {
-		      this.dataManager.set(IGNITED, true);
+		      this.entityData.set(IGNITED, true);
 		   }
 
 	   /**
 	    * (abstract) Protected helper method to read subclass entity data from NBT.
 	    */
-	   public void readAdditional(CompoundNBT compound) {
-	      super.readAdditional(compound);
-	      this.dataManager.set(POWERED, compound.getBoolean("powered"));
+	   public void readAdditionalSaveData(CompoundNBT compound) {
+	      super.readAdditionalSaveData(compound);
+	      this.entityData.set(POWERED, compound.getBoolean("powered"));
 	      if (compound.contains("Fuse", 99)) {
 	         this.fuseTime = compound.getShort("Fuse");
 	      }
@@ -119,14 +126,14 @@ public class CreeperProjectileEntity extends ProjectileItemEntity {
 	
 	
 	@Override
-	protected void onImpact(RayTraceResult result) {
+	protected void onHit(RayTraceResult result) {
 		
 		if(result.getType() == RayTraceResult.Type.ENTITY) {
 			
 			
 			Entity entity = ((EntityRayTraceResult)result).getEntity();
 			if (entity == null) return;
-			CreeperEntity entityId = new CreeperEntity(EntityType.CREEPER, world);
+			CreeperEntity entityId = new CreeperEntity(EntityType.CREEPER, level);
 			 
 			
 	
@@ -141,10 +148,10 @@ public class CreeperProjectileEntity extends ProjectileItemEntity {
 				
 				damage = 2;
 	
-				entityId.setPosition(entity.getPosX(), entity.getPosY(), entity.getPosZ());
+				entityId.setPos(entity.getX(), entity.getY(), entity.getZ());
 				
 				
-				world.addEntity(entityId);
+				level.addFreshEntity(entityId);
 				entityId.ignite();
 	            
 	          
@@ -152,10 +159,10 @@ public class CreeperProjectileEntity extends ProjectileItemEntity {
 			}
 		
 			
-			entity.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float)damage);
+			entity.hurt(DamageSource.thrown(this, this.getThrower()), (float)damage);
 			
 			
-			if(!world.isRemote) {
+			if(!level.isClientSide) {
 				
 				this.remove();
 				
@@ -165,35 +172,33 @@ public class CreeperProjectileEntity extends ProjectileItemEntity {
 		
 		if(result.getType() == RayTraceResult.Type.MISS) {
 			
-		world.playSound((PlayerEntity)this.getThrower(), this.getPosition(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.AMBIENT, 1.0F, 1.0F);
-			if(!world.isRemote) {
+		level.playSound((PlayerEntity)this.getThrower(), this.blockPosition(), SoundEvents.GENERIC_EXPLODE, SoundCategory.AMBIENT, 1.0F, 1.0F);
+			if(!level.isClientSide) {
 				this.remove();
 			}
 			
 			
 		}
 		
-		
-		if(!world.isRemote) {
+		if(!level.isClientSide) {
 			this.remove();
 		}
 		
 	}
 
-	@Nullable
-	   public LivingEntity getThrower() {
-	      if ((this.owner == null || this.owner.removed) && this.ownerId != null && this.world instanceof ServerWorld) {
-	         Entity entity = ((ServerWorld)this.world).getEntityByUuid(this.ownerId);
-	         if (entity instanceof LivingEntity) {
-	            this.owner = (LivingEntity)entity;
-	         } else {
-	            this.owner = null;
-	         }
-	      }
+	 @Nullable
+   public LivingEntity getThrower() {
+      if ((this.owner == null || this.owner.removed) && this.ownerId != null && this.level instanceof ServerWorld) {
+         Entity entity = ((ServerWorld)this.level).getEntity(this.ownerId);
+         if (entity instanceof LivingEntity) {
+            this.owner = (LivingEntity)entity;
+         } else {
+            this.owner = null;
+         }
+      }
 
-	      return this.owner;
-	   }
-
+      return this.owner;
+   }
 	
 	
 }

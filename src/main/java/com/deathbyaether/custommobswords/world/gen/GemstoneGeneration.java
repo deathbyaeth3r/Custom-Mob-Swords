@@ -23,19 +23,17 @@ public class GemstoneGeneration {
 		public static void generateOres(final BiomeLoadingEvent event) {
 			if (!(event.getCategory().equals(Biome.Category.NETHER) || event.getCategory().equals(Biome.Category.THEEND))) {
 				
-				generateOre(event.getGeneration(), OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, 
-						BlockList.GEMSTONE_ORE.get().getDefaultState(), 1, 0, 16, 16);
+				generateOre(event.getGeneration(), OreFeatureConfig.FillerBlockType.NATURAL_STONE, BlockList.GEMSTONE_ORE.get().defaultBlockState(), 1, 0, 16, 16);
 				
 			}
 		}
 
 		private static void generateOre(BiomeGenerationSettingsBuilder settings, RuleTest fillerType, BlockState state,
 				int veinSize, int minHeight, int maxHeight, int amount) {
-			settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
-					Feature.ORE.withConfiguration(new OreFeatureConfig(fillerType, state, veinSize))
-							.withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(minHeight, 0, maxHeight)))
-							.square().count(amount));
+			settings.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
+					Feature.ORE.configured(new OreFeatureConfig(fillerType, state, veinSize))
+							.decorated(Placement.RANGE.configured(new TopSolidRangeConfig(minHeight, 0, maxHeight)))
+							.squared().count(amount));
 		}
 	}
-
 

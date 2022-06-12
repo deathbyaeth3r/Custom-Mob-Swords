@@ -1,5 +1,6 @@
 package com.deathbyaether.custommobswords.objects.blocks;
 
+import java.util.Properties;
 import java.util.Random;
 
 import net.minecraft.block.BlockState;
@@ -9,8 +10,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import net.minecraft.block.AbstractBlock.Properties;
 
 public class ModOreBlock extends OreBlock {
 	

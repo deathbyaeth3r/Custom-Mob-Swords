@@ -24,6 +24,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import net.minecraft.item.Item.Properties;
+
 public class EndermanSwordItem extends SwordItem {
 
 	public EndermanSwordItem(ModItemTier swordGem, int i, int j, Properties properties) {
@@ -33,45 +35,45 @@ public class EndermanSwordItem extends SwordItem {
 	
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+	public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 		// TODO Auto-generated method stub
-		super.addInformation(stack, worldIn, tooltip, flagIn);
-		if (InputMappings.isKeyDown(Minecraft.getInstance().getMainWindow().getHandle(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
+		super.appendHoverText(stack, worldIn, tooltip, flagIn);
+		if (InputMappings.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
 			tooltip.add(new StringTextComponent("Fires a ender pearl on right click"));
 		} else {
 			
 			tooltip.add(new StringTextComponent("Hold" + "\u00A7e" + " Shift " + "\u00A77" + "for Info!"));
 		}
-		super.addInformation(stack, worldIn, tooltip, flagIn);
+		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 	}
 	
 	public boolean onLeftClickEntity(ItemStack stack, PlayerEntity playerIn, Entity entity) {
 		
-		playerIn.playSound(SoundEvents.ENTITY_ENDERMAN_SCREAM, 5F, 0.8F + random.nextFloat() * 0.3F);
+		playerIn.playSound(SoundEvents.ENDERMAN_SCREAM, 5F, 0.8F + random.nextFloat() * 0.3F);
 		
 	                        
 	return super.onLeftClickEntity(stack, playerIn, entity);
 }
 	
-public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-    ItemStack stack = playerIn.getHeldItem(handIn);
-    worldIn.playSound((PlayerEntity)null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundEvents.ENTITY_ENDER_PEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
-    playerIn.getCooldownTracker().setCooldown(this, 20);
+public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    ItemStack stack = playerIn.getItemInHand(handIn);
+    worldIn.playSound((PlayerEntity)null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.ENDER_PEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+    playerIn.getCooldowns().addCooldown(this, 20);
     
-    if (!worldIn.isRemote) {
+    if (!worldIn.isClientSide) {
        EnderPearlEntity enderpearlentity = new EnderPearlEntity(worldIn, playerIn);
        enderpearlentity.setItem(stack);
-       enderpearlentity.setDirectionAndMovement(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-       worldIn.addEntity(enderpearlentity);
+       enderpearlentity.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, 1.5F, 1.0F);
+       worldIn.addFreshEntity(enderpearlentity);
        
-       playerIn.getCooldownTracker().setCooldown(this, 100);
+       playerIn.getCooldowns().addCooldown(this, 100);
     }
 	
-		if(!playerIn.abilities.isCreativeMode) {
+		if(!playerIn.abilities.instabuild) {
 			
 		}
 		
-		return ActionResult.resultSuccess(stack);
+		return ActionResult.success(stack);
 	}
 
 	
