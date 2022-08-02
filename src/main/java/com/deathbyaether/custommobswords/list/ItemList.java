@@ -85,7 +85,7 @@ public class ItemList
 	
 	public static final RegistryObject<GhastSwordItem> GHAST_SWORD = ITEMS.register("ghast_sword", () -> new GhastSwordItem(ModItemTier.SWORD_GEM, 0, 0, new Item.Properties().tab(SwordTab)));
 	public static final RegistryObject<SkeletonSwordItem> SKELETON_SWORD = ITEMS.register("skeleton_sword", () -> new SkeletonSwordItem(ModItemTier.SWORD_GEM, 0, 0, new Item.Properties().tab(SwordTab)));
-	//public static final RegistryObject<ShulkerSwordItem> SHULKER_SWORD = ITEMS.register("shulker_sword", () -> new ShulkerSwordItem(ModItemTier.SWORD_GEM, 0, 0, new Item.Properties().tab(SwordTab)));
+	public static final RegistryObject<ShulkerSwordItem> SHULKER_SWORD = ITEMS.register("shulker_sword", () -> new ShulkerSwordItem(ModItemTier.SWORD_GEM, 0, 0, new Item.Properties().tab(SwordTab)));
 	public static final RegistryObject<CreeperSwordItem> CREEPER_SWORD = ITEMS.register("creeper_sword", () -> new CreeperSwordItem(ModItemTier.SWORD_GEM, 0, 0, new Item.Properties().tab(SwordTab)));
 	public static final RegistryObject<EndermanSwordItem> ENDERMAN_SWORD = ITEMS.register("enderman_sword", () -> new EndermanSwordItem(ModItemTier.SWORD_GEM, 0, 0, new Item.Properties().tab(SwordTab)));
 	//public static final RegistryObject<BlazeSwordItem> BLAZE_SWORD = ITEMS.register("blaze_sword", () -> new BlazeSwordItem(ModItemTier.SWORD_GEM, 0, 0, new Item.Properties().tab(SwordTab)));
@@ -95,7 +95,7 @@ public class ItemList
 	//public static final RegistryObject<SpiderSwordItem> SPIDER_SWORD = ITEMS.register("spider_sword", () -> new SpiderSwordItem(ModItemTier.SWORD_GEM, 0, 0, new Item.Properties().tab(SwordTab)));
 	//public static final RegistryObject<ZombieSwordItem> ZOMBIE_SWORD = ITEMS.register("zombie_sword", () -> new ZombieSwordItem(ModItemTier.SWORD_GEM, 0, 0, new Item.Properties().tab(SwordTab)));
 	//public static final RegistryObject<WitchSwordItem> WITCH_SWORD = ITEMS.register("witch_sword", () -> new WitchSwordItem(ModItemTier.SWORD_GEM, 0, 0, new Item.Properties().tab(SwordTab)));
-	public static final RegistryObject<WitherSkeletonSwordItem> WITHERSKELETON_SWORD = ITEMS.register("witherskeleton_sword", () -> new WitherSkeletonSwordItem(ModItemTier.SWORD_GEM, 0, 0, new Item.Properties().tab(SwordTab)));
+	//public static final RegistryObject<WitherSkeletonSwordItem> WITHERSKELETON_SWORD = ITEMS.register("witherskeleton_sword", () -> new WitherSkeletonSwordItem(ModItemTier.SWORD_GEM, 0, 0, new Item.Properties().tab(SwordTab)));
 	//public static final RegistryObject<EndermiteSwordItem> ENDERMITE_SWORD = ITEMS.register("endermite_sword", () -> new EndermiteSwordItem(ModItemTier.SWORD_GEM, 0, 0, new Item.Properties().tab(SwordTab)));
 	//public static final RegistryObject<GuardianSwordItem> GUARDIAN_SWORD = ITEMS.register("guardian_sword", () -> new GuardianSwordItem(ModItemTier.SWORD_GEM, 0, 0, new Item.Properties().tab(SwordTab)));
 	//public static final RegistryObject<ElderGuardianSwordItem> ELDERGUARDIAN_SWORD = ITEMS.register("elderguardian_sword", () -> new ElderGuardianSwordItem(ModItemTier.SWORD_GEM, 0, 0, new Item.Properties().tab(SwordTab)));
