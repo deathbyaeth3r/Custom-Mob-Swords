@@ -12,6 +12,7 @@ import com.deathbyaether.custommobswords.list.ParticleList;
 import com.deathbyaether.custommobswords.objects.entities.renderer.BeeStingProjectileRenderer;
 import com.deathbyaether.custommobswords.objects.entities.renderer.CreeperProjectileRenderer;
 import com.deathbyaether.custommobswords.objects.entities.renderer.DragonForceRenderer;
+import com.deathbyaether.custommobswords.objects.entities.renderer.SpiderWebProjectileRenderer;
 import com.deathbyaether.custommobswords.objects.entities.renderer.SquidInkRenderer;
 import com.deathbyaether.custommobswords.world.gen.GemstoneGeneration;
 
@@ -105,6 +106,7 @@ public class Main
 		RenderingRegistry.registerEntityRenderingHandler(EntityList.DRAGONFORCE_PROJETILE.get(), DragonForceRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityList.SQUIDINK_PROJETILE.get(), SquidInkRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityList.BEESTING_PROJETILE.get(), BeeStingProjectileRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityList.SPIDERWEB_PROJETILE.get(), SpiderWebProjectileRenderer::new);
 	}
 	
 	
