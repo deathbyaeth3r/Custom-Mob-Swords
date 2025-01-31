@@ -27,8 +27,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class DragonForceEntity extends ProjectileItemEntity {
-	public int explosionPower = 10;
-	
+	public int explosionPower = 5;
 	private Entity target;
 	@Nullable
 	private Direction direction;
