@@ -79,7 +79,6 @@ public class SquidInkEntity extends ProjectileItemEntity {
 	            this.applyEnchantments(this.owner, entity);
 	           ((LivingEntity)entity).addPotionEffect(new EffectInstance(Effects.BLINDNESS, 700));
 	           this.playSound(SoundEvents.ENTITY_PLAYER_HURT_DROWN, 1.0F, 1.0F);
-	           
 
 
 	           if(!world.isRemote) {

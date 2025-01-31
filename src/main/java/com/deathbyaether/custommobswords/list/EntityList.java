@@ -4,7 +4,6 @@ import com.deathbyaether.custommobswords.Main;
 import com.deathbyaether.custommobswords.objects.entities.BeeStingProjectileEntity;
 import com.deathbyaether.custommobswords.objects.entities.CreeperProjectileEntity;
 import com.deathbyaether.custommobswords.objects.entities.DragonForceEntity;
-import com.deathbyaether.custommobswords.objects.entities.SpiderWebProjectileEntity;
 import com.deathbyaether.custommobswords.objects.entities.SquidInkEntity;
 
 import net.minecraft.entity.EntityClassification;
@@ -29,7 +28,4 @@ public class EntityList {
 	
 	public static final RegistryObject<EntityType<BeeStingProjectileEntity>> BEESTING_PROJETILE = ENTITIES.register("beesting_projectile", 
 			() -> EntityType.Builder.<BeeStingProjectileEntity>create(BeeStingProjectileEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("beesting_projectile"));
-	
-	public static final RegistryObject<EntityType<SpiderWebProjectileEntity>> SPIDERWEB_PROJETILE = ENTITIES.register("spiderweb_projectile", 
-			() -> EntityType.Builder.<SpiderWebProjectileEntity>create(SpiderWebProjectileEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("spiderweb_projectile"));
 }
