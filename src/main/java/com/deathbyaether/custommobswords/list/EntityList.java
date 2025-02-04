@@ -1,9 +1,13 @@
 package com.deathbyaether.custommobswords.list;
 
 import com.deathbyaether.custommobswords.Main;
+import com.deathbyaether.custommobswords.objects.entities.BatSwordProjectileEntity;
 import com.deathbyaether.custommobswords.objects.entities.BeeStingProjectileEntity;
+import com.deathbyaether.custommobswords.objects.entities.CarrotProjectileEntity;
+import com.deathbyaether.custommobswords.objects.entities.ChickenEggProjectileEntity;
 import com.deathbyaether.custommobswords.objects.entities.CreeperProjectileEntity;
 import com.deathbyaether.custommobswords.objects.entities.DragonForceEntity;
+import com.deathbyaether.custommobswords.objects.entities.MilkSplashProjectileEntity;
 import com.deathbyaether.custommobswords.objects.entities.SpiderWebProjectileEntity;
 import com.deathbyaether.custommobswords.objects.entities.SquidInkEntity;
 
@@ -32,4 +36,18 @@ public class EntityList {
 	
 	public static final RegistryObject<EntityType<SpiderWebProjectileEntity>> SPIDERWEB_PROJETILE = ENTITIES.register("spiderweb_projectile", 
 			() -> EntityType.Builder.<SpiderWebProjectileEntity>create(SpiderWebProjectileEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("spiderweb_projectile"));
+
+	public static final RegistryObject<EntityType<BatSwordProjectileEntity>> BAT_SWORD_PROJECTILE = ENTITIES.register("batsword_projectile", 
+			() -> EntityType.Builder.<BatSwordProjectileEntity>create(BatSwordProjectileEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("batsword_projectile"));
+	
+	public static final RegistryObject<EntityType<ChickenEggProjectileEntity>> CHICKENEGG_PROJECTILE = ENTITIES.register("chickenegg_projectile", 
+			() -> EntityType.Builder.<ChickenEggProjectileEntity>create(ChickenEggProjectileEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("chickenegg_projectile"));
+	
+	public static final RegistryObject<EntityType<MilkSplashProjectileEntity>> MILK_SPLASH_PROJECTILE = ENTITIES.register("milk_projectile", 
+			() -> EntityType.Builder.<MilkSplashProjectileEntity>create(MilkSplashProjectileEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("milk_projectile"));
+	
+	public static final RegistryObject<EntityType<CarrotProjectileEntity>> CARROT_PROJECTILE = ENTITIES.register("carrot_projectile", 
+			() -> EntityType.Builder.<CarrotProjectileEntity>create(CarrotProjectileEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("carrot_projectile"));
+	
+	
 }

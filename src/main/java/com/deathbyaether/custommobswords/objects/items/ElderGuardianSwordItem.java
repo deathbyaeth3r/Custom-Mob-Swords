@@ -18,25 +18,19 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ElderGuardianSwordItem extends SwordItem {
-	public ElderGuardianSwordItem(ModItemTier swordGem, int i, int j, Properties properties) {
-		super(swordGem, j, i, properties);
-		
-	}
-	
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		// TODO Auto-generated method stub
-		super.addInformation(stack, worldIn, tooltip, flagIn);
-		if (InputMappings.isKeyDown(Minecraft.getInstance().getMainWindow().getHandle(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
-			tooltip.add(new StringTextComponent(""));
-		} else {
-			
-			tooltip.add(new StringTextComponent("Hold" + "\u00A7e" + " Shift " + "\u00A77" + "for Info!"));
-		}
-		super.addInformation(stack, worldIn, tooltip, flagIn);
-		 
-		
-	}
-
+    public ElderGuardianSwordItem(ModItemTier swordGem, int i, int j, Properties properties) {
+        super(swordGem, j, i, properties);
+    }
+    
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        super.addInformation(stack, worldIn, tooltip, flagIn);
+        if (InputMappings.isKeyDown(Minecraft.getInstance().getMainWindow().getHandle(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
+            tooltip.add(new StringTextComponent("Fires a ElderGuardian projectile on right click"));
+        } else {
+            tooltip.add(new StringTextComponent("Hold §e Shift §7 for projectile!"));
+        }
+    }
 }
+
