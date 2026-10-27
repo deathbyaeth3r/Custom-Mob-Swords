@@ -76,7 +76,9 @@ public class BatSwordProjectileEntity extends ProjectileItemEntity {
         if (result.getType() == RayTraceResult.Type.ENTITY) {
             Entity entity = ((EntityRayTraceResult) result).getEntity();
             entity.attackEntityFrom(DamageSource.causeIndirectDamage(this, this.owner).setProjectile(), 4.0F);
-            ((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.GLOWING, 200)); // Glowing effect for 10 seconds
+            if (entity instanceof LivingEntity) {
+                ((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.GLOWING, 200));
+            }
             this.playSound(SoundEvents.ENTITY_BAT_AMBIENT, 1.0F, 1.0F);
         }
         if (!world.isRemote) {
