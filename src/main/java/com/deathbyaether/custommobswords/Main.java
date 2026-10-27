@@ -1,29 +1,16 @@
 package com.deathbyaether.custommobswords;
 
-import java.util.function.Supplier;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.deathbyaether.custommobswords.events.InputEvents;
 import com.deathbyaether.custommobswords.events.PlayerEvents;
 import com.deathbyaether.custommobswords.list.BlockList;
 import com.deathbyaether.custommobswords.list.EntityList;
 import com.deathbyaether.custommobswords.list.ItemList;
 import com.deathbyaether.custommobswords.list.ParticleList;
-import com.deathbyaether.custommobswords.objects.entities.renderer.BatSwordProjectileRenderer;
-import com.deathbyaether.custommobswords.objects.entities.renderer.BeeStingProjectileRenderer;
-import com.deathbyaether.custommobswords.objects.entities.renderer.CarrotProjectileRenderer;
-import com.deathbyaether.custommobswords.objects.entities.renderer.ChickenEggProjectileRenderer;
-import com.deathbyaether.custommobswords.objects.entities.renderer.CreeperProjectileRenderer;
-import com.deathbyaether.custommobswords.objects.entities.renderer.DragonForceRenderer;
-import com.deathbyaether.custommobswords.objects.entities.renderer.MilkSplashProjectileRenderer;
-import com.deathbyaether.custommobswords.objects.entities.renderer.SpiderWebProjectileRenderer;
-import com.deathbyaether.custommobswords.objects.entities.renderer.SquidInkRenderer;
 import com.deathbyaether.custommobswords.world.gen.GemstoneGeneration;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -33,11 +20,9 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -61,7 +46,6 @@ public class Main
 		
 		
 		modEventBus.addListener(this::setup);
-		modEventBus.addListener(this::clientSetup);
 		
 		/* Register all of our deferred registries from our list/init classes, which get added to the IEventBus */
 		ParticleList.PARTICLES.register(modEventBus);
@@ -69,7 +53,6 @@ public class Main
 		BlockList.BLOCKS.register(modEventBus);
 		BlockList.NO_ITEM_BLOCK.register(modEventBus);
 		EntityList.ENTITIES.register(modEventBus);
-		InputEvents.register(modEventBus);
 	    PlayerEvents.register(modEventBus);
 	}
 	
@@ -95,30 +78,6 @@ public class Main
 		
 		DeferredWorkQueue.runLater(GemstoneGeneration::generate);
 		
-	}
-	
-	
-	private void clientSetup(final FMLClientSetupEvent event)
-	{	
-		
-		registerEntityModels(event.getMinecraftSupplier());	
-		
-		
-	}
-	
-	private void registerEntityModels(Supplier<Minecraft> minecraft) {
-		
-		ItemRenderer renderer = minecraft.get().getItemRenderer();
-		
-		RenderingRegistry.registerEntityRenderingHandler(EntityList.CREEPER_PROJETILE.get(), CreeperProjectileRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(EntityList.DRAGONFORCE_PROJETILE.get(), DragonForceRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(EntityList.SQUIDINK_PROJETILE.get(), SquidInkRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(EntityList.BEESTING_PROJETILE.get(), BeeStingProjectileRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(EntityList.SPIDERWEB_PROJETILE.get(), SpiderWebProjectileRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(EntityList.BAT_SWORD_PROJECTILE.get(), BatSwordProjectileRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(EntityList.CHICKENEGG_PROJECTILE.get(), ChickenEggProjectileRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(EntityList.MILK_SPLASH_PROJECTILE.get(), MilkSplashProjectileRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(EntityList.CARROT_PROJECTILE.get(), CarrotProjectileRenderer::new);
 	}
 	
 	

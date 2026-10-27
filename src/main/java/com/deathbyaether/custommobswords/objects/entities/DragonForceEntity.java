@@ -1,7 +1,5 @@
 package com.deathbyaether.custommobswords.objects.entities;
 
-import javax.annotation.Nullable;
-
 import com.deathbyaether.custommobswords.list.EntityList;
 import com.deathbyaether.custommobswords.list.ItemList;
 
@@ -16,8 +14,6 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
@@ -29,11 +25,6 @@ import net.minecraftforge.fml.network.NetworkHooks;
 public class DragonForceEntity extends ProjectileItemEntity {
 	public int explosionPower = 10;
 	
-	private Entity target;
-	@Nullable
-	private Direction direction;
-	private int steps;
-
 	public DragonForceEntity(EntityType<DragonForceEntity> type, World world) {
 		super(type, world);
 	}
@@ -87,40 +78,28 @@ public class DragonForceEntity extends ProjectileItemEntity {
 
 	@Override
 	protected void onImpact(RayTraceResult result) {
-		
-		 if (result.getType() == RayTraceResult.Type.ENTITY) {
-	         Entity entity = ((EntityRayTraceResult)result).getEntity();
-	         entity.attackEntityFrom(DamageSource.causeIndirectDamage(this, this.owner).setProjectile(), 4.0F);
-	            this.applyEnchantments(this.owner, entity);
-	           ((LivingEntity)entity).addPotionEffect(new EffectInstance(Effects.WITHER, 390));
-	           ((LivingEntity)entity).addPotionEffect(new EffectInstance(Effects.WEAKNESS, 1300));
-	           entity.setFire(7);
-	           entity.addVelocity(0, 2, 0);
-	           if(!world.isRemote) {
-					this.remove();
-				}
-	              
-		 }
-	            if (result.getType() == RayTraceResult.Type.BLOCK) {
-	            	
-	            	BlockRayTraceResult blockRTR = (BlockRayTraceResult)result;
-	            	
-	            	boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.world, this.owner);	
-	    			world.createExplosion((Entity)null, this.getPosX(), this.getPosY(), this.getPosZ(), (float)this.explosionPower, flag, flag ? Explosion.Mode.DESTROY : Explosion.Mode.NONE);
-	    		
-	    			if(!world.isRemote) {
-	    				this.remove();
-	    				}
-	            	 
-	              
-	            if(!world.isRemote) {
-	    					this.remove();
-	    				}
-	            }
-	      }
-	
-		
+		// Impacts alter world state, so process them on the logical server only.
+		if (this.world.isRemote) return;
 
+		if (result.getType() == RayTraceResult.Type.ENTITY) {
+			Entity entity = ((EntityRayTraceResult) result).getEntity();
+			entity.attackEntityFrom(DamageSource.causeIndirectDamage(this, this.owner).setProjectile(), 4.0F);
+			this.applyEnchantments(this.owner, entity);
+			if (entity instanceof LivingEntity) {
+				LivingEntity livingEntity = (LivingEntity) entity;
+				livingEntity.addPotionEffect(new EffectInstance(Effects.WITHER, 390));
+				livingEntity.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 1300));
+			}
+			entity.setFire(7);
+			entity.addVelocity(0.0D, 2.0D, 0.0D);
+			this.remove();
+		} else if (result.getType() == RayTraceResult.Type.BLOCK) {
+			boolean mobGriefing = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.world, this.owner);
+			this.world.createExplosion(null, this.getPosX(), this.getPosY(), this.getPosZ(), (float) this.explosionPower,
+					mobGriefing, mobGriefing ? Explosion.Mode.DESTROY : Explosion.Mode.NONE);
+			this.remove();
+		}
+	}
 
 }
 
