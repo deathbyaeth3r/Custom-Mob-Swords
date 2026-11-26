@@ -1,7 +1,6 @@
 package com.deathbyaether.custommobswords;
 
 import java.util.function.Supplier;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,13 +8,15 @@ import com.deathbyaether.custommobswords.list.BlockList;
 import com.deathbyaether.custommobswords.list.EntityList;
 import com.deathbyaether.custommobswords.list.ItemList;
 import com.deathbyaether.custommobswords.objects.entities.renderer.BeeStingProjectileRenderer;
+import com.deathbyaether.custommobswords.objects.entities.renderer.CarrotProjectileRenderer;
+import com.deathbyaether.custommobswords.objects.entities.renderer.CaveSpiderProjectileRenderer;
 import com.deathbyaether.custommobswords.objects.entities.renderer.CreeperProjectileRenderer;
 import com.deathbyaether.custommobswords.objects.entities.renderer.DragonForceRenderer;
+import com.deathbyaether.custommobswords.objects.entities.renderer.GuardianLaserBeamEntityRenderer;
 import com.deathbyaether.custommobswords.objects.entities.renderer.SquidInkRenderer;
 import com.deathbyaether.custommobswords.world.gen.GemstoneGeneration;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -99,12 +100,13 @@ public class Main
 	
 	private void registerEntityModels(Supplier<Minecraft> minecraft) {
 		
-		ItemRenderer renderer = minecraft.get().getItemRenderer();
-		
 		RenderingRegistry.registerEntityRenderingHandler(EntityList.CREEPER_PROJETILE.get(), CreeperProjectileRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityList.DRAGONFORCE_PROJETILE.get(), DragonForceRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityList.SQUIDINK_PROJETILE.get(), SquidInkRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityList.BEESTING_PROJETILE.get(), BeeStingProjectileRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityList.CAVESPIDER_PROJETILE.get(), CaveSpiderProjectileRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityList.CARROT_PROJECTILE.get(), CarrotProjectileRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityList.GUARDIAN_LASER_BEAM.get(), GuardianLaserBeamEntityRenderer::new);
 	}
 	
 	

@@ -20,22 +20,25 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class PolarBearSwordItem extends SwordItem {
+	@Override
+	public net.minecraft.util.ActionResult<net.minecraft.item.ItemStack> use(net.minecraft.world.World world, net.minecraft.entity.player.PlayerEntity player, net.minecraft.util.Hand hand) {
+		return SwordAbilityActions.activate("polarbear_sword", this, world, player, hand);
+	}
 	public PolarBearSwordItem(ModItemTier swordGem, int i, int j, Properties properties) {
 		super(swordGem, j, i, properties);
 		
 	}
 	
+	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		// TODO Auto-generated method stub
+	public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 		if (Screen.hasShiftDown()) {
-			tooltip.add(new StringTextComponent("Fires a bee stinger on right click"));
+			tooltip.add(new StringTextComponent("Right-click for strength and resistance."));
 		} else {
 			
-			tooltip.add(new StringTextComponent("Hold" + "\u00A7e" + " Shift " + "\u00A77" + "for projectile!"));
+			tooltip.add(new StringTextComponent("Hold" + "\u00A7e" + " Shift " + "\u00A77" + "for ability!"));
 		}
-		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 	}
 
 }

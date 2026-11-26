@@ -5,11 +5,11 @@ import javax.annotation.Nullable;
 import com.deathbyaether.custommobswords.list.EntityList;
 import com.deathbyaether.custommobswords.list.ItemList;
 
-
-import net.minecraft.block.Blocks;
+import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.item.Item;
@@ -19,16 +19,13 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Direction;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class DragonForceEntity extends ProjectileItemEntity {
@@ -97,6 +94,7 @@ public class DragonForceEntity extends ProjectileItemEntity {
 	         Entity entity = ((EntityRayTraceResult)result).getEntity();
 	         entity.hurt(DamageSource.indirectMobAttack(this, this.owner).setProjectile(), 4.0F);
 	            this.doEnchantDamageEffects(this.owner, entity);
+	        
 	           ((LivingEntity)entity).addEffect(new EffectInstance(Effects.WITHER, 390));
 	           ((LivingEntity)entity).addEffect(new EffectInstance(Effects.WEAKNESS, 1300));
 	           entity.setSecondsOnFire(7);

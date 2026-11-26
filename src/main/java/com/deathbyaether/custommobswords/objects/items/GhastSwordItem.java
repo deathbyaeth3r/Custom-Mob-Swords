@@ -7,6 +7,7 @@ import org.lwjgl.glfw.GLFW;
 import com.deathbyaether.custommobswords.util.enums.ModItemTier;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.util.InputMappings;
 import net.minecraft.entity.Entity;
@@ -39,15 +40,13 @@ public class GhastSwordItem extends SwordItem {
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		// TODO Auto-generated method stub
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
-		if (InputMappings.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
+		if (Screen.hasShiftDown()) {
 			tooltip.add(new StringTextComponent("Fires a fireball on right click"));
 		} else {
 			
 			tooltip.add(new StringTextComponent("Hold" + "\u00A7e" + " Shift " + "\u00A77" + "for projectile!"));
 		}
-		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 	}
 	
 	public boolean onLeftClickEntity(ItemStack stack, PlayerEntity playerIn, Entity entity) {
@@ -60,6 +59,7 @@ public class GhastSwordItem extends SwordItem {
  
 	
 	
+		@Override
 		public ActionResult<ItemStack> use (World worldIn, PlayerEntity playerIn, Hand handIn) {
 			
 			ItemStack stack = playerIn.getItemInHand(handIn);

@@ -8,8 +8,10 @@ import com.deathbyaether.custommobswords.objects.entities.DragonForceEntity;
 import com.deathbyaether.custommobswords.util.enums.ModItemTier;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.util.InputMappings;
+import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -25,6 +27,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import net.minecraft.item.Item.Properties;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 
 public class EnderdragonSwordItem extends SwordItem {
 	
@@ -38,15 +43,13 @@ public class EnderdragonSwordItem extends SwordItem {
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		// TODO Auto-generated method stub
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
-		if (InputMappings.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
+		if (Screen.hasShiftDown()) {
 			tooltip.add(new StringTextComponent("Fires a combustive dragon charge on right click"));
 		} else {
 			
 			tooltip.add(new StringTextComponent("Hold" + "\u00A7e" + " Shift " + "\u00A77" + "for Info!"));
 		}
-		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 		 
 		
 	}
@@ -63,6 +66,7 @@ public class EnderdragonSwordItem extends SwordItem {
 	 
 
 	
+	@Override
 	public ActionResult<ItemStack> use (World worldIn, PlayerEntity playerIn, Hand handIn) {
 		
 		ItemStack stack = playerIn.getItemInHand(handIn);
@@ -78,13 +82,19 @@ public class EnderdragonSwordItem extends SwordItem {
 		
 		
 		
-		
 		if(!worldIn.isClientSide) {
 			
 	
 			DragonForceEntity dragonforceentity = new DragonForceEntity(worldIn, pX, pY, pZ, dX, dY, dZ);
 			dragonforceentity.lerpMotion(dX, dY, dZ);
 			worldIn.addFreshEntity(dragonforceentity);
+			 AreaEffectCloudEntity areaeffectcloudentity = new AreaEffectCloudEntity(worldIn, pX, pY, pZ);
+	         areaeffectcloudentity.setParticle(ParticleTypes.DRAGON_BREATH);
+	         areaeffectcloudentity.setRadius(2.0F);
+	         areaeffectcloudentity.setDuration(300);
+	         areaeffectcloudentity.setRadiusPerTick((5.0F - areaeffectcloudentity.getRadius()) / (float)areaeffectcloudentity.getDuration());
+	         areaeffectcloudentity.addEffect(new EffectInstance(Effects.HARM, 1, 0));
+	         worldIn.addFreshEntity(areaeffectcloudentity);
 
 			playerIn.getCooldowns().addCooldown(this, 100);
 				
