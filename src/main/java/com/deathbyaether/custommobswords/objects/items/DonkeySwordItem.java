@@ -8,9 +8,10 @@ import com.deathbyaether.custommobswords.objects.entities.CarrotProjectileEntity
 import com.deathbyaether.custommobswords.util.enums.ModItemTier;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.util.InputMappings;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
@@ -22,7 +23,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
@@ -42,12 +42,12 @@ public class DonkeySwordItem extends SwordItem {
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         super.addInformation(stack, worldIn, tooltip, flagIn);
-        if (InputMappings.isKeyDown(Minecraft.getInstance().getMainWindow().getHandle(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
+        if (Screen.hasShiftDown()) {
             tooltip.add(new StringTextComponent("Right-Click: Opens extra inventory (Cargo Mode)"));
             tooltip.add(new StringTextComponent("Shift + Right-Click: Grants Speed and Jump Boost"));
             tooltip.add(new StringTextComponent("Left-Click: Knocks back enemies behind you (Donkey Kick)"));
         } else {
-            tooltip.add(new StringTextComponent("Hold" + "§e" + " Shift " + "§7" + "for abilities!"));
+            tooltip.add(new StringTextComponent("Hold" + "ï¿½e" + " Shift " + "ï¿½7" + "for abilities!"));
         }
     }
     @Override
@@ -81,21 +81,35 @@ public class DonkeySwordItem extends SwordItem {
             }
         return ActionResult.resultSuccess(stack);
         }
-      
-  
+    
+    @Override
+    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        if (!attacker.world.isRemote) {
+            System.out.println("Left click detected: Applying knockback");
 
-    @SubscribeEvent
-    public void onDonkeyKick(LivingAttackEvent event) {
-        Entity attacker = event.getSource().getTrueSource();
-        if (attacker instanceof PlayerEntity) {
-            PlayerEntity player = (PlayerEntity) attacker;
-            if (player.getHeldItemMainhand().getItem() instanceof DonkeySwordItem) {
-                // Apply knockback effect to enemies behind the player
-            	  Vec3d knockback = new Vec3d(-player.getLookVec().x, 0.5, -player.getLookVec().z).normalize().scale(1.5);
-                  event.getEntityLiving().setMotion(knockback);
-                  event.getEntityLiving().attackEntityFrom(DamageSource.causePlayerDamage(player), 6.0F);
-                  player.playSound(SoundEvents.ENTITY_HORSE_ANGRY, 1.0F, 1.0F);
+            // Apply knockback effect
+            double xRatio = attacker.getPosX() - target.getPosX();
+            double zRatio = attacker.getPosZ() - target.getPosZ();
+            double magnitude = Math.sqrt(xRatio * xRatio + zRatio * zRatio);
+
+            if (magnitude != 0) {
+                target.setMotion(xRatio / magnitude * 2.5, 0.5, zRatio / magnitude * 2.5);
             }
-        }
-    }
+
+            // Apply damage
+            target.attackEntityFrom(DamageSource.causePlayerDamage((PlayerEntity) attacker), 4.0F);
+
+            System.out.println("Knockback applied!");
+
+            // Spawn Carrot Projectile
+            CarrotProjectileEntity projectile = new CarrotProjectileEntity(attacker, attacker.world);
+            projectile.setPosition(attacker.getPosX(), attacker.getPosYEye(), attacker.getPosZ());
+            projectile.shoot(attacker, attacker.rotationPitch, attacker.rotationYaw, 0.0F, 1.5F, 1.0F);
+            attacker.world.addEntity(projectile);
+
+            System.out.println("CarrotProjectileEntity spawned!");
+       }
+        return super.hitEntity(stack, target, attacker);
+   }
+    
 }

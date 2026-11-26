@@ -21,7 +21,9 @@ public class PufferfishSwordItem extends SwordItem {
 	public boolean onLeftClickEntity(ItemStack stack, PlayerEntity playerIn, Entity entity) {
 		
 		playerIn.playSound(SoundEvents.ENTITY_PUFFER_FISH_STING, 5F, 0.8F + random.nextFloat() * 0.3F);
-		((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.POISON, 390, 2));
+		if (entity instanceof LivingEntity) {
+		    ((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.POISON, 390, 2));
+		}
 		playerIn.addPotionEffect(new EffectInstance(Effects.RESISTANCE, 1300, 2));
 		
 	                        

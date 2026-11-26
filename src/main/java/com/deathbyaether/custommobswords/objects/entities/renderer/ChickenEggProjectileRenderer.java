@@ -17,7 +17,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class ChickenEggProjectileRenderer extends EntityRenderer<ChickenEggProjectileEntity> {
 
-    public static final ResourceLocation CHICKEN_EGG_ENTITY = new ResourceLocation(Main.MOD_ID, "");
+    public static final ResourceLocation CHICKEN_EGG_ENTITY = new ResourceLocation(Main.MOD_ID, "textures/entity/chicken_egg_projectile.png");
     private static final RenderType field_229044_e_ = RenderType.getEntityCutoutNoCull(CHICKEN_EGG_ENTITY);
     
     public ChickenEggProjectileRenderer(EntityRendererManager renderManagerIn) {

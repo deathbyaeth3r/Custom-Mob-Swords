@@ -4,9 +4,11 @@ import com.deathbyaether.custommobswords.Main;
 import com.deathbyaether.custommobswords.objects.entities.BatSwordProjectileEntity;
 import com.deathbyaether.custommobswords.objects.entities.BeeStingProjectileEntity;
 import com.deathbyaether.custommobswords.objects.entities.CarrotProjectileEntity;
+import com.deathbyaether.custommobswords.objects.entities.CaveSpiderProjectileEntity;
 import com.deathbyaether.custommobswords.objects.entities.ChickenEggProjectileEntity;
 import com.deathbyaether.custommobswords.objects.entities.CreeperProjectileEntity;
 import com.deathbyaether.custommobswords.objects.entities.DragonForceEntity;
+import com.deathbyaether.custommobswords.objects.entities.GuardianLaserBeamEntity;
 import com.deathbyaether.custommobswords.objects.entities.MilkSplashProjectileEntity;
 import com.deathbyaether.custommobswords.objects.entities.SpiderWebProjectileEntity;
 import com.deathbyaether.custommobswords.objects.entities.SquidInkEntity;
@@ -49,5 +51,10 @@ public class EntityList {
 	public static final RegistryObject<EntityType<CarrotProjectileEntity>> CARROT_PROJECTILE = ENTITIES.register("carrot_projectile", 
 			() -> EntityType.Builder.<CarrotProjectileEntity>create(CarrotProjectileEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("carrot_projectile"));
 	
+	public static final RegistryObject<EntityType<GuardianLaserBeamEntity>> GUARDIAN_LASER_BEAM = ENTITIES.register("laser_projectile", 
+			() -> EntityType.Builder.<GuardianLaserBeamEntity>create(GuardianLaserBeamEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("laser_projectile"));
+
+	public static final RegistryObject<EntityType<CaveSpiderProjectileEntity>> CAVESPIDER_PROJETILE = ENTITIES.register("cavespider_projectile",
+			() -> EntityType.Builder.<CaveSpiderProjectileEntity>create(CaveSpiderProjectileEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("cavespider_projectile"));
 	
 }

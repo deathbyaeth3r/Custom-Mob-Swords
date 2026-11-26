@@ -14,7 +14,38 @@
  "block.mobswords.gemstone_ore": "Gemstone Ore",
 
  
- "itemGroup.swords_group": "Custom Mob Swords"
+ "itemGroup.swords_group": "Custom Mob Swords",
+ "item.mobswords.sheep_sword": "Sheep Sword",
+ "item.mobswords.cow_sword": "Cow Sword",
+ "item.mobswords.mooshroom_sword": "Mooshroom Sword",
+ "item.mobswords.wolf_sword": "Wolf Sword",
+ "item.mobswords.snowgolem_sword": "Snow Golem Sword",
+ "item.mobswords.ocelot_sword": "Ocelot Sword",
+ "item.mobswords.irongolem_sword": "Iron Golem Sword",
+ "item.mobswords.bat_sword": "Bat Sword",
+ "item.mobswords.donkey_sword": "Donkey Sword",
+ "item.mobswords.horse_sword": "Horse Sword",
+ "item.mobswords.mule_sword": "Mule Sword",
+ "item.mobswords.rabbit_sword": "Rabbit Sword",
+ "item.mobswords.polarbear_sword": "Polar Bear Sword",
+ "item.mobswords.shulker_sword": "Shulker Sword",
+ "item.mobswords.blaze_sword": "Blaze Sword",
+ "item.mobswords.cavespider_sword": "Cave Spider Sword",
+ "item.mobswords.magmacube_sword": "Magma Cube Sword",
+ "item.mobswords.silverfish_sword": "Silverfish Sword",
+ "item.mobswords.spider_sword": "Spider Sword",
+ "item.mobswords.zombie_sword": "Zombie Sword",
+ "item.mobswords.witch_sword": "Witch Sword",
+ "item.mobswords.witherskeleton_sword": "Wither Skeleton Sword",
+ "item.mobswords.endermite_sword": "Endermite Sword",
+ "item.mobswords.guardian_sword": "Guardian Sword",
+ "item.mobswords.elderguardian_sword": "Elder Guardian Sword",
+ "item.mobswords.husk_sword": "Husk Sword",
+ "item.mobswords.stray_sword": "Stray Sword",
+ "item.mobswords.villager_sword": "Villager Sword",
+ "item.mobswords.pig_sword": "Pig Sword",
+ "item.mobswords.chicken_sword": "Chicken Sword",
+ "item.mobswords.zombievillager_sword": "Zombie Villager Sword"
 
 
 

@@ -18,7 +18,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class BatSwordProjectileRenderer extends EntityRenderer<BatSwordProjectileEntity> {
 
-    public static final ResourceLocation BATSWORD_ENTITY = new ResourceLocation(Main.MOD_ID, "");
+    public static final ResourceLocation BATSWORD_ENTITY = new ResourceLocation(Main.MOD_ID, "textures/entity/bat_projectile.png");
     private static final RenderType field_229044_e_ = RenderType.getEntityCutoutNoCull(BATSWORD_ENTITY);
     public BatSwordProjectileRenderer(EntityRendererManager renderManagerIn) {
         super(renderManagerIn);

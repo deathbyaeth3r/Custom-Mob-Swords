@@ -7,6 +7,7 @@ import org.lwjgl.glfw.GLFW;
 import com.deathbyaether.custommobswords.util.enums.ModItemTier;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.util.InputMappings;
 import net.minecraft.entity.Entity;
@@ -37,26 +38,27 @@ public class WitherSwordItem extends SwordItem {
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		// TODO Auto-generated method stub
 		super.addInformation(stack, worldIn, tooltip, flagIn);
-		if (InputMappings.isKeyDown(Minecraft.getInstance().getMainWindow().getHandle(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
+		if (Screen.hasShiftDown()) {
 			tooltip.add(new StringTextComponent("Fires a wither skull on right click"));
 		} else {
 			
 			tooltip.add(new StringTextComponent("Hold" + "\u00A7e" + " Shift " + "\u00A77" + "for projectile!"));
 		}
-		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 	
 	@Override
 	public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
-		((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.WITHER, 390, 2));
+		if (entity instanceof LivingEntity) {
+		    ((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.WITHER, 390, 2));
+		}
 		player.playSound(SoundEvents.ENTITY_WITHER_SHOOT, 5F, 0.8F + random.nextFloat() * 0.3F);
 		
 		
 		return super.onLeftClickEntity(stack, player, entity);
 	}
 	
+	@Override
 	public ActionResult<ItemStack> onItemRightClick (World worldIn, PlayerEntity playerIn, Hand handIn) {
 		
 		ItemStack stack = playerIn.getHeldItem(handIn);

@@ -14,7 +14,7 @@ version="1.15.2-1.4B"
 
 displayName="Custom Mob Swords"
 
-updateJSONURL="http://myurl.me/"
+# updateJSONURL omitted until an update manifest is configured.
 
 displayURL="https://www.curseforge.com/minecraft/mc-mods/custom-mob-swords"
 

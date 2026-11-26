@@ -14,9 +14,11 @@ import com.deathbyaether.custommobswords.list.ParticleList;
 import com.deathbyaether.custommobswords.objects.entities.renderer.BatSwordProjectileRenderer;
 import com.deathbyaether.custommobswords.objects.entities.renderer.BeeStingProjectileRenderer;
 import com.deathbyaether.custommobswords.objects.entities.renderer.CarrotProjectileRenderer;
+import com.deathbyaether.custommobswords.objects.entities.renderer.CaveSpiderProjectileRenderer;
 import com.deathbyaether.custommobswords.objects.entities.renderer.ChickenEggProjectileRenderer;
 import com.deathbyaether.custommobswords.objects.entities.renderer.CreeperProjectileRenderer;
 import com.deathbyaether.custommobswords.objects.entities.renderer.DragonForceRenderer;
+import com.deathbyaether.custommobswords.objects.entities.renderer.GuardianLaserBeamEntityRenderer;
 import com.deathbyaether.custommobswords.objects.entities.renderer.MilkSplashProjectileRenderer;
 import com.deathbyaether.custommobswords.objects.entities.renderer.SpiderWebProjectileRenderer;
 import com.deathbyaether.custommobswords.objects.entities.renderer.SquidInkRenderer;
@@ -63,7 +65,7 @@ public class Main
 		modEventBus.addListener(this::setup);
 		modEventBus.addListener(this::clientSetup);
 		
-		/* Register all of our deferred registries from our list/init classes, which get added to the IEventBus */
+		/* Register all of the deferred registries from our list/init classes, which get added to the IEventBus */
 		ParticleList.PARTICLES.register(modEventBus);
 		ItemList.ITEMS.register(modEventBus);
 		BlockList.BLOCKS.register(modEventBus);
@@ -119,6 +121,8 @@ public class Main
 		RenderingRegistry.registerEntityRenderingHandler(EntityList.CHICKENEGG_PROJECTILE.get(), ChickenEggProjectileRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityList.MILK_SPLASH_PROJECTILE.get(), MilkSplashProjectileRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityList.CARROT_PROJECTILE.get(), CarrotProjectileRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityList.CAVESPIDER_PROJETILE.get(), CaveSpiderProjectileRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityList.GUARDIAN_LASER_BEAM.get(), GuardianLaserBeamEntityRenderer::new);
 	}
 	
 	

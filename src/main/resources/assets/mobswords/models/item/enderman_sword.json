@@ -1,6 +1,6 @@
 {
-    "parent": "item/handheld",
-    "textures": {
-        "layer0": "mobswords:items/enderman_sword"
-    }
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "mobswords:items/enderman_sword"
+  }
 }

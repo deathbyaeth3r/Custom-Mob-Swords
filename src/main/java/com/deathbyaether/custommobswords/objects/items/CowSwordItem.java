@@ -8,12 +8,14 @@ import com.deathbyaether.custommobswords.objects.entities.MilkSplashProjectileEn
 import com.deathbyaether.custommobswords.util.enums.ModItemTier;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.util.InputMappings;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
@@ -39,12 +41,12 @@ public class CowSwordItem extends SwordItem {
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         super.addInformation(stack, worldIn, tooltip, flagIn);
-        if (InputMappings.isKeyDown(Minecraft.getInstance().getMainWindow().getHandle(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
+        if (Screen.hasShiftDown()) {
             tooltip.add(new StringTextComponent("Right-Click: Removes negative effects (Milk Shield)"));
             tooltip.add(new StringTextComponent("Shift + Right-Click: Charge forward and knock enemies back"));
             tooltip.add(new StringTextComponent("Landing: Stomps the ground, damaging nearby enemies"));
         } else {
-            tooltip.add(new StringTextComponent("Hold" + "§e" + " Shift " + "§7" + "for abilities!"));
+            tooltip.add(new StringTextComponent("Hold" + "ï¿½e" + " Shift " + "ï¿½7" + "for abilities!"));
         }
     }
 
@@ -60,8 +62,12 @@ public class CowSwordItem extends SwordItem {
                 player.velocityChanged = true;
                 player.playSound(SoundEvents.ENTITY_COW_AMBIENT, 1.0F, 1.0F);
             } else {
-                // Milk Shield: Removes negative effects
-                player.clearActivePotions();
+                // Milk Shield: remove harmful effects without clearing beneficial buffs.
+                for (EffectInstance effect : new java.util.ArrayList<>(player.getActivePotionEffects())) {
+                    if (!effect.getPotion().isBeneficial()) {
+                        player.removePotionEffect(effect.getPotion());
+                    }
+                }
               
              // Spawn Milk Splash Projectile
                 MilkSplashProjectileEntity projectile = new MilkSplashProjectileEntity(player, world);
@@ -77,7 +83,8 @@ public class CowSwordItem extends SwordItem {
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent event) {
         PlayerEntity player = event.player;
-        if (!player.world.isRemote && player.fallDistance > 1 && player.onGround && player.getHeldItemMainhand().getItem() instanceof CowSwordItem) {
+        if (event.phase == TickEvent.Phase.END && !player.world.isRemote && player.fallDistance > 1
+                && player.onGround && player.getHeldItemMainhand().getItem() instanceof CowSwordItem) {
             // Cow Stomp Effect
             player.world.createExplosion(null, player.getPosX(), player.getPosY(), player.getPosZ(), 0.0F, false, net.minecraft.world.Explosion.Mode.NONE);
             player.world.getEntitiesWithinAABB(LivingEntity.class, player.getBoundingBox().grow(3)).forEach(entity -> {

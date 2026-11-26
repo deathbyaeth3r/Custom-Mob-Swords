@@ -17,7 +17,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class SpiderWebProjectileRenderer extends EntityRenderer<SpiderWebProjectileEntity>{
 	
-	public static final ResourceLocation SPIDERWEB_ENTITY = new ResourceLocation(Main.MOD_ID, "");
+	public static final ResourceLocation SPIDERWEB_ENTITY = new ResourceLocation(Main.MOD_ID, "textures/entity/spiderweb_projectile.png");
     private static final RenderType field_229044_e_ = RenderType.getEntityCutoutNoCull(SPIDERWEB_ENTITY);
     public SpiderWebProjectileRenderer(EntityRendererManager renderManagerIn) {
         super(renderManagerIn);

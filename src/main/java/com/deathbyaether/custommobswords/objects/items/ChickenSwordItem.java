@@ -10,6 +10,7 @@ import com.deathbyaether.custommobswords.objects.entities.ChickenHatchingEggEnti
 import com.deathbyaether.custommobswords.util.enums.ModItemTier;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.util.InputMappings;
 import net.minecraft.entity.Entity;
@@ -41,18 +42,19 @@ public class ChickenSwordItem extends SwordItem {
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         super.addInformation(stack, worldIn, tooltip, flagIn);
-        if (InputMappings.isKeyDown(Minecraft.getInstance().getMainWindow().getHandle(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
+        if (Screen.hasShiftDown()) {
             tooltip.add(new StringTextComponent("Shoots an egg that launches enemies on right-click"));
             tooltip.add(new StringTextComponent("Spawns multiple hatching eggs on shift + right-click"));
         } else {
-            tooltip.add(new StringTextComponent("Hold" + "§e" + " Shift " + "§7" + "for abilities!"));
+            tooltip.add(new StringTextComponent("Hold" + "ï¿½e" + " Shift " + "ï¿½7" + "for abilities!"));
         }
     }
 
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent event) {
         PlayerEntity player = event.player;
-        if (player.getHeldItemMainhand().getItem() instanceof ChickenSwordItem) {
+        if (event.phase == TickEvent.Phase.END && !player.world.isRemote
+                && player.getHeldItemMainhand().getItem() instanceof ChickenSwordItem) {
             player.addPotionEffect(new EffectInstance(Effects.SLOW_FALLING, 10, 0, false, false));
         }
     }

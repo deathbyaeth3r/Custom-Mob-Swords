@@ -4,10 +4,9 @@ package com.deathbyaether.custommobswords.events;
 
 import com.deathbyaether.custommobswords.Main;
 import com.deathbyaether.custommobswords.list.KeybindsList;
-import com.deathbyaether.custommobswords.objects.items.BatSwordItem;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.potion.Effects;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -49,8 +48,12 @@ public class InputEvents {
 	    PlayerEntity player = (PlayerEntity) event.getEntityLiving();
 
 	    // Ensure jump triggers only when on the ground
-	    if (BatSwordItem.batFlightActive && player.onGround && wingFlapCount < MAX_FLAPS) {
-	        System.out.println("Wing Flap Activated!");  // Debug message
+	    if (!player.isPotionActive(Effects.SLOW_FALLING)) {
+	        wingFlapCount = 0;
+	        return;
+	    }
+
+	    if (player.onGround && wingFlapCount < MAX_FLAPS) {
 
 	        // Apply motion (jump boost)
 	        player.setMotion(player.getMotion().x, 3.0, player.getMotion().z);

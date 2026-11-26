@@ -26,16 +26,16 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 public class CaveSpiderProjectileEntity extends ProjectileItemEntity {
     
-    public CaveSpiderProjectileEntity(EntityType<SpiderWebProjectileEntity> type, World world) {
+    public CaveSpiderProjectileEntity(EntityType<CaveSpiderProjectileEntity> type, World world) {
         super(type, world);
     }
     
     public CaveSpiderProjectileEntity(LivingEntity entity, World world) {
-        super(EntityList.SPIDERWEB_PROJETILE.get(), entity, world);
+		super(EntityList.CAVESPIDER_PROJETILE.get(), entity, world);
     }
     
     public CaveSpiderProjectileEntity(double x, double y, double z, World world) {
-        super(EntityList.SPIDERWEB_PROJETILE.get(), x, y, z, world);
+		super(EntityList.CAVESPIDER_PROJETILE.get(), x, y, z, world);
     }
     
     @Override

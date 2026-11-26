@@ -18,7 +18,7 @@ import net.minecraft.util.ResourceLocation;
 public class CarrotProjectileRenderer extends EntityRenderer<CarrotProjectileEntity> {
 
 
-    public static final ResourceLocation CARROT_TEXTURE = new ResourceLocation(Main.MOD_ID, "minecraft:textures/item/carrot.png");
+    public static final ResourceLocation CARROT_TEXTURE = new ResourceLocation(Main.MOD_ID, "textures/entity/carrot_projectile.png");
     private static final RenderType field_229044_e_ = RenderType.getEntityCutoutNoCull(CARROT_TEXTURE);
     public CarrotProjectileRenderer(EntityRendererManager renderManagerIn) {
         super(renderManagerIn);

@@ -8,6 +8,7 @@ import com.deathbyaether.custommobswords.objects.entities.CaveSpiderProjectileEn
 import com.deathbyaether.custommobswords.util.enums.ModItemTier;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.util.InputMappings;
 import net.minecraft.entity.player.PlayerEntity;
@@ -37,7 +38,7 @@ public class CaveSpiderSwordItem extends SwordItem {
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         super.addInformation(stack, worldIn, tooltip, flagIn);
-        if (InputMappings.isKeyDown(Minecraft.getInstance().getMainWindow().getHandle(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
+        if (Screen.hasShiftDown()) {
             tooltip.add(new StringTextComponent("\u00A7eCrouch near a wall to climb!"));
             tooltip.add(new StringTextComponent("\u00A7eRight click to shoot cobwebs!"));
         } else {
@@ -45,6 +46,7 @@ public class CaveSpiderSwordItem extends SwordItem {
         }
     }
 
+    @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
     	
     	ItemStack stack = playerIn.getHeldItem(handIn);
